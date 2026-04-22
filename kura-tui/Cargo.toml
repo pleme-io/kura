@@ -1,0 +1,29 @@
+[package]
+name = "kura-tui"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Kura TUI renderer — crossterm backend, Nord palette, Kitty graphics, Ghostty-optimized, Lisp-themeable"
+
+[dependencies]
+kura-core    = { workspace = true }
+kura-ghostty = { workspace = true }
+kura-agent   = { workspace = true }
+kura-provider = { workspace = true }
+crossterm    = { workspace = true }
+tatara-ui    = { workspace = true }
+irodori      = { workspace = true }
+mojiban      = { workspace = true }
+shikumi      = { workspace = true }
+tokio        = { workspace = true }
+tokio-stream = { workspace = true }
+serde        = { workspace = true }
+serde_json   = { workspace = true }
+parking_lot  = { workspace = true }
+tracing      = { workspace = true }
+anyhow       = { workspace = true }
+
+[lints]
+workspace = true

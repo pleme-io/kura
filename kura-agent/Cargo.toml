@@ -1,0 +1,31 @@
+[package]
+name = "kura-agent"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Kura agentic loop — Think→Tool→Observe, session management, context windows, Lisp-authored agents"
+
+[dependencies]
+kura-core     = { workspace = true }
+kura-provider = { workspace = true }
+kura-tool     = { workspace = true }
+tatara-lisp   = { workspace = true }
+tokio         = { workspace = true }
+tokio-stream  = { workspace = true }
+serde         = { workspace = true }
+serde_json    = { workspace = true }
+tracing       = { workspace = true }
+anyhow        = { workspace = true }
+uuid          = { workspace = true }
+chrono        = { workspace = true }
+tempfile      = { workspace = true }
+dirs          = { workspace = true }
+
+[dev-dependencies]
+tokio = { workspace = true }
+tempfile = { workspace = true }
+
+[lints]
+workspace = true

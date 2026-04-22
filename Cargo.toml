@@ -1,0 +1,69 @@
+[workspace]
+members = [
+    "kura",
+    "kura-core",
+    "kura-provider",
+    "kura-agent",
+    "kura-tool",
+    "kura-ghostty",
+    "kura-tui",
+    "kura-lattice",
+    "kura-check",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85.0"
+authors = ["Pleme.io <engineering@pleme.io>"]
+license = "MIT"
+homepage = "https://github.com/pleme-io/kura"
+repository = "https://github.com/pleme-io/kura"
+
+[workspace.dependencies]
+kura-core      = { path = "kura-core" }
+kura-provider  = { path = "kura-provider" }
+kura-agent     = { path = "kura-agent" }
+kura-tool      = { path = "kura-tool" }
+kura-ghostty   = { path = "kura-ghostty" }
+kura-tui       = { path = "kura-tui" }
+kura-lattice   = { path = "kura-lattice" }
+tatara-lisp        = { git = "https://github.com/pleme-io/tatara", branch = "main" }
+tatara-lisp-derive = { git = "https://github.com/pleme-io/tatara", branch = "main" }
+tatara-ui          = { git = "https://github.com/pleme-io/tatara", branch = "main" }
+shikumi            = { git = "https://github.com/pleme-io/shikumi", branch = "main" }
+irodori            = { git = "https://github.com/pleme-io/irodori", branch = "main" }
+kaname             = { git = "https://github.com/pleme-io/kaname", branch = "main" }
+mojiban            = { git = "https://github.com/pleme-io/mojiban", branch = "main" }
+hasami             = { git = "https://github.com/pleme-io/hasami", branch = "main" }
+serde        = { version = "1", features = ["derive"] }
+serde_json   = "1"
+blake3       = "1"
+hex          = "0.4"
+crossterm    = { version = "0.28", features = ["event-stream"] }
+tokio        = { version = "1", features = ["full"] }
+tokio-stream = "0.1"
+clap         = { version = "4", features = ["derive"] }
+anyhow       = "1"
+thiserror    = "2"
+tracing      = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+figment      = { version = "0.10", features = ["yaml", "toml", "env"] }
+reqwest      = { version = "0.12", features = ["json", "stream", "rustls-tls"], default-features = false }
+futures-util = "0.3"
+async-trait  = "0.1"
+parking_lot  = "0.12"
+uuid        = { version = "1", features = ["v4"] }
+chrono      = "0.4"
+tempfile    = "3"
+dirs        = "6"
+base64      = "0.22"
+proptest    = "1"
+
+[profile.release]
+codegen-units = 1
+lto = true
+
+[workspace.lints.clippy]
+pedantic = "warn"

@@ -1,0 +1,132 @@
+kind: KuraWorkspace
+version: "0.1.0"
+description: "Kura — the Rust+Lisp agentic coding harness, Ghostty-native, Nix-managed"
+
+vocabulary:
+  keywords:
+    - defprovider
+    - defagent
+    - deftool
+    - defplugin
+    - defkeymap
+    - defsession
+    - defzen
+    - defopenai
+  primitives:
+    - ProviderSpec
+    - AgentSpec
+    - ToolSpec
+    - PluginSpec
+    - KeymapSpec
+    - SessionSpec
+    - ZenProviderSpec
+    - OpenAiCompatSpec
+
+domains:
+  count: 8
+  boundary: TataraDomain
+  identity: BLAKE3-canonical-JSON
+  surface:
+    - keyword: defprovider
+      rust_type: ProviderSpec
+      lattice: ProviderTrust
+    - keyword: defagent
+      rust_type: AgentSpec
+      lattice: AgentAutonomy
+    - keyword: deftool
+      rust_type: ToolSpec
+      lattice: ToolSafety
+    - keyword: defplugin
+      rust_type: PluginSpec
+    - keyword: defkeymap
+      rust_type: KeymapSpec
+    - keyword: defsession
+      rust_type: SessionSpec
+    - keyword: defzen
+      rust_type: ZenProviderSpec
+    - keyword: defopenai
+      rust_type: OpenAiCompatSpec
+
+lattice:
+  axes:
+    - name: ProviderTrust
+      order: [Custom, Ollama, OpenAi, Anthropic, Zen]
+      bottom: Custom
+      top: Zen
+    - name: GuardrailLevel
+      order: [None, Permissive, Strict]
+      bottom: None
+      top: Strict
+    - name: AgentAutonomy
+      order: [AutoApprove, ManualApproval]
+      bottom: AutoApprove
+      top: ManualApproval
+    - name: ToolSafety
+      order: [Unguarded, Guardrailed]
+      bottom: Unguarded
+      top: Guardrailed
+  product: KuraClassification
+  satisfies: leq
+
+stack:
+  runtime:
+    - Rust
+    - Tokio
+  terminal:
+    - Crossterm
+    - Ghostty
+  authoring:
+    - TataraLisp
+    - Shikumi
+  palette:
+    - Irodori
+  mcp:
+    - Kaname
+
+DAG:
+  inputs:
+    - nixpkgs
+    - substrate
+    - forge
+    - crate2nix
+    - tatara
+    - shikumi
+    - irodori
+    - kaname
+    - mojiban
+  depends:
+    kura-core: [tatara-lisp, tatara-lisp-derive, blake3]
+    kura-provider: [kura-core, shikumi, reqwest]
+    kura-agent: [kura-core, kura-provider, kura-tool, tatara-lisp]
+    kura-tool: [kura-core, kaname, hasami]
+    kura-ghostty: [crossterm]
+    kura-tui: [kura-core, kura-ghostty, kura-agent, crossterm, tatara-ui, irodori]
+    kura-lattice: []
+    kura-check: [kura-core, kura-lattice, tatara-lisp]
+
+render:
+  produces:
+    - binary: kura
+    - binary: kura-check
+    - config: "~/.config/kura/kura.yaml"
+    - config: "~/.config/kura/init.lisp"
+    - config: "~/.config/kura/plugins/"
+    - config: "~/.config/kura/mcp.json"
+    - config: "~/.config/kura/guardrail.yaml"
+  builder: rust-workspace-release-flake
+  release: forge-tool-4-target
+
+compliance:
+  participates:
+    - guardrail-safety
+    - credential-injection
+  controls:
+    - id: GUARD-001
+      description: "Shell tool calls gated by guardrail pattern check"
+      phase: AtBoundary
+    - id: CRED-001
+      description: "API keys via env vars, never stored in config"
+      phase: AtBoundary
+
+modules:
+  home_manager: module/

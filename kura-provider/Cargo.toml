@@ -1,0 +1,23 @@
+[package]
+name = "kura-provider"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Kura AI provider adapters — Zen first-class, OpenAI-compatible streaming, multi-provider routing"
+
+[dependencies]
+kura-core    = { workspace = true }
+shikumi      = { workspace = true }
+reqwest      = { workspace = true }
+tokio        = { workspace = true }
+futures-util = { workspace = true }
+serde        = { workspace = true }
+serde_json   = { workspace = true }
+async-trait  = { workspace = true }
+tracing      = { workspace = true }
+anyhow       = { workspace = true }
+
+[lints]
+workspace = true

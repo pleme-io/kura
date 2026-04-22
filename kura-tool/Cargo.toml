@@ -1,0 +1,28 @@
+[package]
+name = "kura-tool"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Kura tool runtime — shell (guardrail-gated), file ops, MCP bridge, search, Git operations"
+
+[dependencies]
+kura-core  = { workspace = true }
+kaname     = { workspace = true }
+hasami     = { workspace = true }
+tokio      = { workspace = true }
+serde      = { workspace = true }
+serde_json = { workspace = true }
+tracing    = { workspace = true }
+anyhow     = { workspace = true }
+parking_lot = { workspace = true }
+tempfile    = { workspace = true }
+reqwest     = { workspace = true }
+
+[dev-dependencies]
+tokio = { workspace = true }
+tempfile = { workspace = true }
+
+[lints]
+workspace = true

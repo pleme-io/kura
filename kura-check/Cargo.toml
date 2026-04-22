@@ -1,0 +1,23 @@
+[package]
+name = "kura-check"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Kura workspace coherence checker — domain registry integrity, cross-domain references, guardrail coherence"
+
+[[bin]]
+name = "kura-check"
+path = "src/main.rs"
+
+[dependencies]
+kura-core  = { workspace = true }
+kura-lattice = { workspace = true }
+tatara-lisp = { workspace = true }
+serde_json  = { workspace = true }
+anyhow      = { workspace = true }
+clap        = { workspace = true }
+
+[lints]
+workspace = true

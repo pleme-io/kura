@@ -1,0 +1,20 @@
+[package]
+name = "kura-ghostty"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Kura Ghostty integration — Kitty Graphics Protocol, Kitty Keyboard Protocol, terminal detection, synced output"
+
+[dependencies]
+crossterm = { workspace = true }
+tokio     = { workspace = true }
+serde     = { workspace = true }
+thiserror = { workspace = true }
+tracing   = { workspace = true }
+anyhow    = { workspace = true }
+base64    = { workspace = true }
+
+[lints]
+workspace = true

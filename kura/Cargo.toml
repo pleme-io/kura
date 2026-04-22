@@ -1,0 +1,31 @@
+[package]
+name = "kura"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Kura — the Rust+Lisp agentic coding harness, Ghostty-native, Nix-managed"
+
+[[bin]]
+name = "kura"
+path = "src/main.rs"
+
+[dependencies]
+kura-core     = { workspace = true }
+kura-provider = { workspace = true }
+kura-agent    = { workspace = true }
+kura-tool     = { workspace = true }
+kura-tui      = { workspace = true }
+kura-ghostty  = { workspace = true }
+tatara-lisp   = { workspace = true }
+shikumi       = { workspace = true }
+clap          = { workspace = true }
+crossterm     = { workspace = true }
+tokio         = { workspace = true }
+tracing       = { workspace = true }
+tracing-subscriber = { workspace = true }
+anyhow        = { workspace = true }
+
+[lints]
+workspace = true
