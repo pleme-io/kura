@@ -1,0 +1,10 @@
+{
+  "git+https://github.com/pleme-io/hasami?branch=main#0.1.0": "0624n8kpk42y7h86sd0r9d5zgiiib062bwb5iip1nyzsaqbw9x72",
+  "git+https://github.com/pleme-io/irodori?branch=main#0.1.0": "17wdvrdz7bx4rhy53scrrrhanlj92x0mv8cfr5srl0kz91aahwis",
+  "git+https://github.com/pleme-io/kaname?branch=main#0.1.0": "1dni52prbgabklcqf3ws9x4xqyqigd9fs0c960ska8b1fnsgpww4",
+  "git+https://github.com/pleme-io/mojiban?branch=main#0.1.0": "1qwhd7ng07bfb5qzbfx0riifyllmsjd69650s7nxrsa1fv7hxhnz",
+  "git+https://github.com/pleme-io/shikumi?branch=main#0.1.0": "05vm63mc3rlzbwl6i0c60cxs7vmbfdrlvpzzf17v59zwfrw7fs29",
+  "git+https://github.com/pleme-io/tatara?branch=main#tatara-lisp-derive@0.2.0": "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a",
+  "git+https://github.com/pleme-io/tatara?branch=main#tatara-lisp@0.2.0": "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a",
+  "git+https://github.com/pleme-io/tatara?branch=main#tatara-ui@0.2.0": "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a"
+}
