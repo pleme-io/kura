@@ -113,6 +113,16 @@ rec {
       # File a bug if you depend on any for non-debug work!
       debug = internal.debugCrate { inherit packageId; };
     };
+    "kura-run" = rec {
+      packageId = "kura-run";
+      build = internal.buildRustCrateWithFeatures {
+        packageId = "kura-run";
+      };
+
+      # Debug support which might change between releases.
+      # File a bug if you depend on any for non-debug work!
+      debug = internal.debugCrate { inherit packageId; };
+    };
     "kura-tool" = rec {
       packageId = "kura-tool";
       build = internal.buildRustCrateWithFeatures {
@@ -3766,6 +3776,10 @@ rec {
             packageId = "kura-provider";
           }
           {
+            name = "kura-run";
+            packageId = "kura-run";
+          }
+          {
             name = "kura-tool";
             packageId = "kura-tool";
           }
@@ -4099,6 +4113,113 @@ rec {
           {
             name = "tracing";
             packageId = "tracing";
+          }
+        ];
+
+      };
+      "kura-run" = rec {
+        crateName = "kura-run";
+        version = "0.1.0";
+        edition = "2024";
+        crateBin = [
+          {
+            name = "kura-run";
+            path = "src/main.rs";
+            requiredFeatures = [ ];
+          }
+        ];
+        src = lib.cleanSourceWith { filter = sourceFilter;  src = ./kura-run; };
+        libName = "kura_run";
+        authors = [
+          "Pleme.io <engineering@pleme.io>"
+        ];
+        dependencies = [
+          {
+            name = "anyhow";
+            packageId = "anyhow";
+          }
+          {
+            name = "async-trait";
+            packageId = "async-trait";
+          }
+          {
+            name = "chrono";
+            packageId = "chrono";
+          }
+          {
+            name = "clap";
+            packageId = "clap";
+            features = [ "derive" ];
+          }
+          {
+            name = "futures-util";
+            packageId = "futures-util";
+          }
+          {
+            name = "kura-core";
+            packageId = "kura-core";
+          }
+          {
+            name = "parking_lot";
+            packageId = "parking_lot";
+          }
+          {
+            name = "serde";
+            packageId = "serde";
+            features = [ "derive" ];
+          }
+          {
+            name = "serde_json";
+            packageId = "serde_json";
+          }
+          {
+            name = "serde_yaml";
+            packageId = "serde_yaml";
+          }
+          {
+            name = "serde_yaml_ng";
+            packageId = "serde_yaml_ng";
+          }
+          {
+            name = "tatara-lisp";
+            packageId = "tatara-lisp";
+          }
+          {
+            name = "thiserror";
+            packageId = "thiserror";
+          }
+          {
+            name = "tokio";
+            packageId = "tokio";
+            features = [ "full" ];
+          }
+          {
+            name = "tracing";
+            packageId = "tracing";
+          }
+          {
+            name = "tracing-subscriber";
+            packageId = "tracing-subscriber";
+            features = [ "env-filter" ];
+          }
+          {
+            name = "uuid";
+            packageId = "uuid";
+            features = [ "v4" ];
+          }
+        ];
+        devDependencies = [
+          {
+            name = "proptest";
+            packageId = "proptest";
+          }
+          {
+            name = "tempfile";
+            packageId = "tempfile";
+          }
+          {
+            name = "tokio-test";
+            packageId = "tokio-test";
           }
         ];
 
@@ -5577,9 +5698,9 @@ rec {
       };
       "pastey" = rec {
         crateName = "pastey";
-        version = "0.2.1";
+        version = "0.2.2";
         edition = "2018";
-        sha256 = "1v2vyc6gnk2qkwvrhzlkf67rwv4car122ix6mb9vp487gkcwlrxq";
+        sha256 = "0alq9j866cji66ls6c8wi4i6rv1867y7habl2lfhgpvvw3q9g9y5";
         procMacro = true;
         authors = [
           "Aditya Kumar <git@adityais.dev>"
@@ -7345,9 +7466,9 @@ rec {
       };
       "rustls" = rec {
         crateName = "rustls";
-        version = "0.23.38";
+        version = "0.23.39";
         edition = "2021";
-        sha256 = "089ssmhd79f0kd22brh6lkaadql2p3pi6579ax1s0kn1n9pldyb9";
+        sha256 = "03p6fkdwbdpp93dfidc4nzgmalwp3gxnv0rk421a5k3pn2612b3w";
         dependencies = [
           {
             name = "once_cell";
@@ -7914,6 +8035,38 @@ rec {
         sha256 = "0isba1fjyg3l6rxk156k600ilzr8fp7crv82rhal0rxz5qd1m2va";
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
+        ];
+        dependencies = [
+          {
+            name = "indexmap";
+            packageId = "indexmap";
+          }
+          {
+            name = "itoa";
+            packageId = "itoa";
+          }
+          {
+            name = "ryu";
+            packageId = "ryu";
+          }
+          {
+            name = "serde";
+            packageId = "serde";
+          }
+          {
+            name = "unsafe-libyaml";
+            packageId = "unsafe-libyaml";
+          }
+        ];
+
+      };
+      "serde_yaml_ng" = rec {
+        crateName = "serde_yaml_ng";
+        version = "0.10.0";
+        edition = "2021";
+        sha256 = "07ylpzx9xykdj4fqfa0vb6xz4c1pazrqqibv78hd8dlbp4kvckbv";
+        authors = [
+          "Antoine Catton <devel@antoine.catton.fr>"
         ];
         dependencies = [
           {
@@ -8806,7 +8959,7 @@ rec {
           "tracing" = [ "dep:tracing" ];
           "windows-sys" = [ "dep:windows-sys" ];
         };
-        resolvedDefaultFeatures = [ "bytes" "default" "fs" "full" "io-std" "io-util" "libc" "macros" "mio" "net" "parking_lot" "process" "rt" "rt-multi-thread" "signal" "signal-hook-registry" "socket2" "sync" "time" "tokio-macros" "windows-sys" ];
+        resolvedDefaultFeatures = [ "bytes" "default" "fs" "full" "io-std" "io-util" "libc" "macros" "mio" "net" "parking_lot" "process" "rt" "rt-multi-thread" "signal" "signal-hook-registry" "socket2" "sync" "test-util" "time" "tokio-macros" "windows-sys" ];
       };
       "tokio-macros" = rec {
         crateName = "tokio-macros";
@@ -8916,6 +9069,39 @@ rec {
           "tokio-util" = [ "dep:tokio-util" ];
         };
         resolvedDefaultFeatures = [ "default" "time" ];
+      };
+      "tokio-test" = rec {
+        crateName = "tokio-test";
+        version = "0.4.5";
+        edition = "2021";
+        sha256 = "0ig5dmv37xb6a2p9mj8crbkggbizs3qyi8wkfrrsz9qh19wj8v9z";
+        libName = "tokio_test";
+        authors = [
+          "Tokio Contributors <team@tokio.rs>"
+        ];
+        dependencies = [
+          {
+            name = "futures-core";
+            packageId = "futures-core";
+          }
+          {
+            name = "tokio";
+            packageId = "tokio";
+            features = [ "rt" "sync" "time" "test-util" ];
+          }
+          {
+            name = "tokio-stream";
+            packageId = "tokio-stream";
+          }
+        ];
+        devDependencies = [
+          {
+            name = "tokio";
+            packageId = "tokio";
+            features = [ "full" ];
+          }
+        ];
+
       };
       "tokio-util" = rec {
         crateName = "tokio-util";
