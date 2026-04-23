@@ -28,7 +28,11 @@ jobs:
           targets: ${{ matrix.target }}
 
       - name: Build
+        env:
+          CARGO_NET_GIT_FETCH_WITH_CLI: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
           cargo build --release -p kura-run --target ${{ matrix.target }}
           cp target/${{ matrix.target }}/release/kura-run ../kura-${{ matrix.slug }}
           shasum -a 256 kura-${{ matrix.slug }} > kura-${{ matrix.slug }}.sha256
