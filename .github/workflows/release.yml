@@ -19,19 +19,13 @@ jobs:
           - slug: linux-x86_64
             runner: ubuntu-latest
             target: x86_64-unknown-linux-gnu
-          - slug: linux-arm64
-            runner: ubuntu-latest
-            target: aarch64-unknown-linux-gnu
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
         with:
-          sparse-checkout: |
-            Cargo.toml
-            Cargo.lock
-            kura/Cargo.toml
-            kura/Cargo.lock
-            kura/kura-run
-          sparse-checkout-cone-mode: false
+          targets: ${{ matrix.target }}
 
       - name: Build
         run: |
