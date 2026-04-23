@@ -26,9 +26,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           sparse-checkout: |
-            kura
             kura/Cargo.toml
             kura/Cargo.lock
+            kura/kura-run
           sparse-checkout-cone-mode: false
 
       - name: Install Rust
@@ -39,8 +39,8 @@ jobs:
       - name: Build
         run: |
           cd kura
-          cargo build --release --bin kura --target ${{ matrix.target }}
-          cp target/${{ matrix.target }}/release/kura ../kura-${{ matrix.slug }}
+          cargo build --release -p kura-run --target ${{ matrix.target }}
+          cp target/${{ matrix.target }}/release/kura-run ../kura-${{ matrix.slug }}
           shasum -a 256 kura-${{ matrix.slug }} > kura-${{ matrix.slug }}.sha256
 
       - name: Upload
