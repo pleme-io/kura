@@ -1,15 +1,8 @@
-# Build + publish `kura-run` binaries for macOS and Linux on every tag push
-# and via manual dispatch.
-#
-# Runners:
-#   - macos-14           → aarch64-darwin (Apple Silicon)
-#   - ubuntu-24.04       → x86_64-linux (glibc)
-#   - ubuntu-24.04-arm   → aarch64-linux (glibc)
 name: release
 
 on:
   push:
-    tags: ["kura-run-v*"]
+    tags: ["kura-v*"]
   workflow_dispatch: {}
 
 jobs:
@@ -22,86 +15,55 @@ jobs:
         include:
           - slug: darwin-arm64
             runner: macos-14
-            rust_target: aarch64-apple-darwin
+            target: aarch64-apple-darwin
           - slug: linux-x86_64
-            runner: ubuntu-24.04
-            rust_target: x86_64-unknown-linux-gnu
+            runner: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
           - slug: linux-arm64
-            runner: ubuntu-24.04-arm
-            rust_target: aarch64-unknown-linux-gnu
+            runner: ubuntu-latest
+            target: aarch64-unknown-linux-gnu
     steps:
       - uses: actions/checkout@v4
         with:
           sparse-checkout: |
             kura
-            kura/kura-run
             kura/Cargo.toml
             kura/Cargo.lock
-            kura/flake.nix
           sparse-checkout-cone-mode: false
 
-      - name: Install Rust toolchain
+      - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: ${{ matrix.rust_target }}
+          targets: ${{ matrix.target }}
 
-      - name: Cache cargo
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: cargo-kura-run-${{ matrix.slug }}-${{ hashFiles('kura/Cargo.lock') }}
-          restore-keys: cargo-kura-run-${{ matrix.slug }}-
-
-      - name: Build release
+      - name: Build
         run: |
           cd kura
-          cargo build --release --bin kura-run \
-            --package kura-run \
-            --target ${{ matrix.rust_target }}
-          cp target/${{ matrix.rust_target }}/release/kura-run ../kura-run-${{ matrix.slug }}
-          shasum -a 256 kura-run-${{ matrix.slug }} > kura-run-${{ matrix.slug }}.sha256
+          cargo build --release --bin kura --target ${{ matrix.target }}
+          cp target/${{ matrix.target }}/release/kura ../kura-${{ matrix.slug }}
+          shasum -a 256 kura-${{ matrix.slug }} > kura-${{ matrix.slug }}.sha256
 
-      - name: Sanity-check the binary
-        run: |
-          ./kura-run-${{ matrix.slug }} --help > /dev/null
-
-      - name: Upload artefact
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: kura-run-${{ matrix.slug }}
-          path: |
-            kura-run-${{ matrix.slug }}
-            kura-run-${{ matrix.slug }}.sha256
+          name: kura-${{ matrix.slug }}
+          path: kura-${{ matrix.slug }}*
           retention-days: 90
 
-  publish-release:
-    name: Publish release
-    if: startsWith(github.ref, 'refs/tags/kura-run-v')
+  publish:
     needs: build
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download all artefacts
+      - name: Download
         uses: actions/download-artifact@v4
         with:
-          path: dist
+          path: release
 
-      - name: Flatten artefact tree
-        run: |
-          mkdir -p release
-          find dist -type f \( -name 'kura-run-*' -o -name 'kura-run-*.sha256' \) -exec cp {} release/ \;
-          ls -la release/
-
-      - name: Create GitHub release
+      - name: Create release
         uses: softprops/action-gh-release@v2
         with:
-          files: release/*
-          draft: false
-          prerelease: false
-          generate_release_notes: true
+          files: release/kura-*
