@@ -34,7 +34,7 @@ jobs:
         run: |
           git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
           cargo build --release -p kura-run --target ${{ matrix.target }}
-          cp target/${{ matrix.target }}/release/kura-run ../kura-${{ matrix.slug }}
+          cp target/${{ matrix.target }}/release/kura-run ./kura-${{ matrix.slug }}
           shasum -a 256 kura-${{ matrix.slug }} > kura-${{ matrix.slug }}.sha256
 
       - name: Upload
