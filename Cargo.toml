@@ -9,6 +9,7 @@ members = [
     "kura-tui",
     "kura-lattice",
     "kura-check",
+    "kura-run",
 ]
 resolver = "2"
 
@@ -29,6 +30,7 @@ kura-tool      = { path = "kura-tool" }
 kura-ghostty   = { path = "kura-ghostty" }
 kura-tui       = { path = "kura-tui" }
 kura-lattice   = { path = "kura-lattice" }
+kura-run      = { path = "kura-run" }
 tatara-lisp        = { git = "https://github.com/pleme-io/tatara", branch = "main" }
 tatara-lisp-derive = { git = "https://github.com/pleme-io/tatara", branch = "main" }
 tatara-ui          = { git = "https://github.com/pleme-io/tatara", branch = "main" }

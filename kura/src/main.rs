@@ -3,6 +3,7 @@ use clap::{Parser, Subcommand};
 use kura_agent::{Conversation, SessionStore};
 use kura_core::register_all;
 use kura_provider::ProviderRouter;
+use kura_run::{parse_file, DagExecutor};
 use kura_tool::ToolExecutor;
 use kura_tui::{App, KuraTheme, TuiEventStream, detect_capabilities};
 
@@ -38,6 +39,10 @@ enum Commands {
         action: ConfigActions,
     },
     Check,
+    Run {
+        #[arg(short, long)]
+        file: String,
+    },
 }
 
 #[derive(Subcommand)]
@@ -59,6 +64,7 @@ async fn main() -> Result<()> {
         Some(Commands::Sessions) => list_sessions().await,
         Some(Commands::Config { action }) => handle_config(action).await,
         Some(Commands::Check) => run_checks().await,
+        Some(Commands::Run { file }) => run_dag(&file).await,
         None => run_tui(None, cli.model, cli.provider).await,
     }
 }
@@ -160,6 +166,26 @@ async fn handle_config(action: ConfigActions) -> Result<()> {
 
 async fn run_checks() -> Result<()> {
     println!("kura checks — domain registry + coherence");
+    Ok(())
+}
+
+async fn run_dag(file: &str) -> Result<()> {
+    let dag = kura_run::parse_file(file)?;
+    println!("loading DAG: {}", dag.name);
+    
+    let executor = kura_run::DagExecutor::new(dag);
+    let result = executor.execute().await?;
+    
+    if result.success {
+        println!("DAG completed successfully");
+    } else {
+        eprintln!("DAG failed:");
+        for (node_id, node_result) in &result.node_results {
+            if let Some(error) = &node_result.error {
+                eprintln!("  {}: {}", node_id.0, error);
+            }
+        }
+    }
     Ok(())
 }
 

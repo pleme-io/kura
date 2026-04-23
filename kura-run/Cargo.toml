@@ -1,0 +1,37 @@
+[package]
+name = "kura-run"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+
+[dependencies]
+clap = { workspace = true }
+kura-core = { workspace = true }
+tatara-lisp = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+serde_yaml = "0.9"
+serde_yaml_ng = "0.10"
+tokio = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+futures-util = { workspace = true }
+async-trait = { workspace = true }
+parking_lot = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+
+[[bin]]
+name = "kura-run"
+path = "src/main.rs"
+
+[dev-dependencies]
+tokio-test = "0.4"
+tempfile = { workspace = true }
+proptest = { workspace = true }

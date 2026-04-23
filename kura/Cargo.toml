@@ -18,6 +18,7 @@ kura-agent    = { workspace = true }
 kura-tool     = { workspace = true }
 kura-tui      = { workspace = true }
 kura-ghostty  = { workspace = true }
+kura-run     = { workspace = true }
 tatara-lisp   = { workspace = true }
 shikumi       = { workspace = true }
 clap          = { workspace = true }
