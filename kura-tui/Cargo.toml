@@ -13,6 +13,8 @@ kura-ghostty = { workspace = true }
 kura-agent   = { workspace = true }
 kura-provider = { workspace = true }
 crossterm    = { workspace = true }
+egaku-term   = { workspace = true }
+egaku        = { workspace = true }
 tatara-ui    = { workspace = true }
 irodori      = { workspace = true }
 mojiban      = { workspace = true }

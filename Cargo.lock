@@ -462,6 +462,29 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d0881ea181b1df73ff77ffaaf9c7544ecc11e82fba9b5f27b262a3c73a332555"
 
 [[package]]
+name = "egaku"
+version = "0.1.0"
+source = "git+https://github.com/pleme-io/egaku#b67e5bb1ab7b817bcc2ecd4ef7a8ea0e06fa814f"
+dependencies = [
+ "serde",
+ "thiserror",
+ "tracing",
+ "unicode-segmentation",
+ "unicode-width",
+]
+
+[[package]]
+name = "egaku-term"
+version = "0.2.1"
+source = "git+https://github.com/pleme-io/egaku-term?tag=v0.2.1#aa3fd63402577c624df499e5e3798d313e4fe6cd"
+dependencies = [
+ "crossterm",
+ "egaku",
+ "thiserror",
+ "unicode-width",
+]
+
+[[package]]
 name = "equivalent"
 version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1154,6 +1177,7 @@ dependencies = [
  "anyhow",
  "clap",
  "crossterm",
+ "egaku-term",
  "kura-agent",
  "kura-core",
  "kura-ghostty",
@@ -1302,6 +1326,8 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "crossterm",
+ "egaku",
+ "egaku-term",
  "irodori",
  "kura-agent",
  "kura-core",
@@ -2777,6 +2803,12 @@ name = "unicode-ident"
 version = "1.0.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e6e4313cd5fcd3dad5cafa179702e2b244f760991f45397d14d4ebf38247da75"
+
+[[package]]
+name = "unicode-segmentation"
+version = "1.13.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9629274872b2bfaf8d66f5f15725007f635594914870f65218920345aa11aa8c"
 
 [[package]]
 name = "unicode-width"

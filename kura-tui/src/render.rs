@@ -1,203 +1,284 @@
+//! Terminal renderer for the kura TUI, built on `egaku-term` v0.2.
+//!
+//! The renderer wraps an [`egaku_term::Terminal`] for the duration of a
+//! frame: clear → paint conversation pane / input bar / status bar /
+//! optional tool-approval modal → flush. Caller owns the Terminal
+//! lifecycle (typically held alongside a `kura_ghostty::TerminalRestoreGuard`
+//! for synced-output and Kitty-keyboard restore).
+//!
+//! Each pane composes egaku-term drawers (`bordered_block_with`,
+//! `paragraph_with`, `status_line_with`, `modal_with`) — the colors come
+//! from the live [`KuraTheme`] so Nord / base16 / Stylix overrides flow
+//! through unchanged.
+
 use crate::app::{App, Focus};
-use crossterm::{
+use crate::layout::Layout;
+use egaku::{Modal, Rect};
+use egaku_term::{
+    Terminal, draw,
+    theme::Palette,
+};
+use egaku_term::crossterm::{
+    QueueableCommand,
     cursor::MoveTo,
-    queue,
-    style::{self, Color, SetBackgroundColor, SetForegroundColor},
-    terminal::{Clear, ClearType},
+    style::{Print, ResetColor, SetBackgroundColor, SetForegroundColor},
 };
 use kura_ghostty::SyncedOutput;
-use std::io::Write;
+use std::io;
 
-pub struct Renderer<'a, W: Write> {
-    stdout: &'a mut W,
-    width: u16,
-    height: u16,
+/// One-shot frame painter. Construct once per frame; do not hold across
+/// awaits — `Terminal` is `!Send` (it owns the stdout handle).
+pub struct Renderer<'a> {
+    term: &'a mut Terminal,
 }
 
-impl<'a, W: Write> Renderer<'a, W> {
-    pub fn new(stdout: &'a mut W, width: u16, height: u16) -> Self {
-        Self {
-            stdout,
-            width,
-            height,
-        }
+impl<'a> Renderer<'a> {
+    /// Borrow a Terminal for the duration of one frame.
+    pub fn new(term: &'a mut Terminal) -> Self {
+        Self { term }
     }
 
+    /// Paint a full frame from `app` state. Caller does not need to clear
+    /// or flush the terminal — this fn does both.
     pub fn render(&mut self, app: &App) -> anyhow::Result<()> {
+        // Synced output (DECSET 2026): atomic frame on supporting terminals.
         if app.capabilities.synced_output {
             let _ = SyncedOutput::begin_on_stdout();
         }
 
-        self.clear_screen(app.theme.bg)?;
+        let (cols, rows) = self.term.size().map_err(map_err)?;
+        let layout = Layout::compute(cols, rows);
 
-        let main_height = if self.height > 3 {
-            self.height - 2
-        } else {
-            self.height
-        };
+        self.term.clear().map_err(map_err)?;
+        self.fill_bg(app, cols, rows)?;
 
-        self.render_conversation_pane(app, 0, 0, self.width, main_height)?;
-        self.render_input_bar(app, 0, main_height, self.width)?;
-        self.render_status_bar(app, 0, main_height + 1, self.width)?;
+        self.render_conversation_pane(app, &layout)?;
+        self.render_input_bar(app, &layout)?;
+        self.render_status_bar(app, &layout)?;
 
         if app.focus == Focus::ToolApproval {
-            self.render_tool_approval(app)?;
+            self.render_tool_approval(app, cols, rows)?;
         }
 
-        self.stdout.flush()?;
+        self.term.flush().map_err(map_err)?;
 
         if app.capabilities.synced_output {
             let _ = SyncedOutput::end_on_stdout();
         }
-
         Ok(())
     }
 
-    fn clear_screen(&mut self, bg: Color) -> anyhow::Result<()> {
-        queue!(self.stdout, SetBackgroundColor(bg), Clear(ClearType::All))?;
+    /// Paint a uniform background across the whole terminal so cleared
+    /// regions match the theme's bg color rather than the user's terminal
+    /// default.
+    fn fill_bg(&mut self, app: &App, cols: u16, rows: u16) -> anyhow::Result<()> {
+        let blank = " ".repeat(usize::from(cols));
+        self.term
+            .out()
+            .queue(SetBackgroundColor(app.theme.bg))?
+            .queue(SetForegroundColor(app.theme.fg))?;
+        for r in 0..rows {
+            self.term
+                .out()
+                .queue(MoveTo(0, r))?
+                .queue(Print(&blank))?;
+        }
+        self.term.out().queue(ResetColor)?;
         Ok(())
     }
 
     fn render_conversation_pane(
         &mut self,
         app: &App,
-        x: u16,
-        y: u16,
-        w: u16,
-        h: u16,
+        layout: &Layout,
     ) -> anyhow::Result<()> {
-        let border_color = if app.focus == Focus::Conversation {
-            app.theme.border_focused
-        } else {
-            app.theme.border
-        };
-
-        queue!(self.stdout, SetForegroundColor(border_color), MoveTo(x, y),)?;
-
+        let palette = palette_from_kura_theme(app);
+        let rect = layout_rect(&layout.conversation);
         let title = format!(
             " {} @ {} [{}] ",
             app.agent_name, app.provider_name, app.model_name
         );
-        self.write_line(&title, app.theme.fg, app.theme.bg, w)?;
+        let focused = app.focus == Focus::Conversation;
+        draw::bordered_block_with(self.term, rect, &title, focused, &palette)
+            .map_err(map_err)?;
 
-        for i in 1..h {
-            queue!(self.stdout, MoveTo(x, y + i))?;
-            self.write_line("", app.theme.fg, app.theme.bg, w)?;
-        }
-
+        // Body — egaku-term's paragraph drawer wraps to the inner rect.
+        // We only render the help-style placeholder for now; the live
+        // conversation content is owned by kura-agent and will land here
+        // via a `Conversation` arg in the next iteration.
+        let inner = draw::block_inner(rect);
+        let placeholder = match app.view {
+            crate::app::View::Help => help_text(),
+            _ => format!("conversation pane — turn {}.", app.turn_count),
+        };
+        draw::paragraph_with(self.term, inner, &placeholder, &palette)
+            .map_err(map_err)?;
         Ok(())
     }
 
-    fn render_input_bar(&mut self, app: &App, x: u16, y: u16, w: u16) -> anyhow::Result<()> {
-        let (bg, fg) = if app.focus == Focus::Input {
-            (app.theme.input_bg, app.theme.input_fg)
+    fn render_input_bar(&mut self, app: &App, layout: &Layout) -> anyhow::Result<()> {
+        let rect = layout_rect(&layout.input);
+        let focused = app.focus == Focus::Input;
+        let prompt = "> ";
+
+        let (fg, bg) = if focused {
+            (app.theme.input_fg, app.theme.input_bg)
         } else {
-            (app.theme.dim, app.theme.muted)
+            (app.theme.muted, app.theme.dim)
         };
 
-        queue!(
-            self.stdout,
-            SetBackgroundColor(bg),
-            SetForegroundColor(fg),
-            MoveTo(x, y)
-        )?;
+        // Render the input row directly — we want explicit control over
+        // the bg fill across the full width plus the cursor placement.
+        let blank = " ".repeat(usize::from(rect.width as u16));
+        self.term
+            .out()
+            .queue(SetBackgroundColor(bg))?
+            .queue(SetForegroundColor(fg))?
+            .queue(MoveTo(rect.x as u16, rect.y as u16))?
+            .queue(Print(&blank))?;
 
-        let prompt = "> ";
-        let input_text = if app.input_buffer.is_empty() {
+        let body = if app.input_buffer.is_empty() && !focused {
             "type your message...".to_string()
         } else {
             app.input_buffer.clone()
         };
+        let line = format!("{prompt}{body}");
+        let max_w = usize::from(rect.width as u16);
+        let truncated: String = line.chars().take(max_w).collect();
+        self.term
+            .out()
+            .queue(MoveTo(rect.x as u16, rect.y as u16))?
+            .queue(Print(truncated))?;
 
-        let line = format!("{}{}", prompt, input_text);
-        self.write_line(&line, fg, bg, w)?;
-
-        if app.focus == Focus::Input {
-            let cursor_pos = (prompt.len() + app.input_cursor) as u16;
-            if cursor_pos < w {
-                queue!(self.stdout, MoveTo(x + cursor_pos, y))?;
+        if focused {
+            #[allow(clippy::cast_possible_truncation, clippy::cast_sign_loss)]
+            let cursor_col = (prompt.len() + app.input_cursor) as u16;
+            if cursor_col < rect.width as u16 {
+                self.term
+                    .out()
+                    .queue(MoveTo(rect.x as u16 + cursor_col, rect.y as u16))?;
             }
         }
-
+        self.term.out().queue(ResetColor)?;
         Ok(())
     }
 
-    fn render_status_bar(&mut self, app: &App, x: u16, y: u16, w: u16) -> anyhow::Result<()> {
-        queue!(
-            self.stdout,
-            SetBackgroundColor(app.theme.status_bg),
-            SetForegroundColor(app.theme.status_fg),
-            MoveTo(x, y),
-        )?;
-
-        let ghostty_indicator = if app.capabilities.is_ghostty {
-            " G"
-        } else {
-            ""
+    fn render_status_bar(&mut self, app: &App, layout: &Layout) -> anyhow::Result<()> {
+        let rect = layout_rect(&layout.status);
+        let palette = Palette {
+            background: app.theme.status_bg,
+            foreground: app.theme.status_fg,
+            accent: app.theme.accent,
+            error: app.theme.error,
+            warning: app.theme.warn,
+            success: app.theme.success,
+            selection: app.theme.status_bg,
+            muted: app.theme.muted,
+            border: app.theme.border,
         };
-        let thinking_indicator = if app.show_thinking { " T" } else { "" };
-        let tool_indicator = if app.show_tool_output { " O" } else { "" };
+
+        let ghostty = if app.capabilities.is_ghostty { " G" } else { "" };
+        let thinking = if app.show_thinking { " T" } else { "" };
+        let tool_out = if app.show_tool_output { " O" } else { "" };
 
         let left = format!(
             " kura {}:{} turn:{}{}{}{}",
             app.provider_name,
             app.model_name,
             app.turn_count,
-            ghostty_indicator,
-            thinking_indicator,
-            tool_indicator,
+            ghostty,
+            thinking,
+            tool_out,
         );
+        let right = app.status_message.as_deref().unwrap_or("").to_string();
 
-        let right = app.status_message.as_deref().unwrap_or("");
-
-        let status = format!(
-            "{:<width$}",
-            format!("{}{}", left, right),
-            width = w as usize
-        );
-        self.write_line(&status, app.theme.status_fg, app.theme.status_bg, w)?;
-
-        Ok(())
+        draw::status_line_with(self.term, rect, &left, &right, &palette)
+            .map_err(map_err)
     }
 
-    fn render_tool_approval(&mut self, app: &App) -> anyhow::Result<()> {
-        if let Some(tool) = &app.pending_tool {
-            let y = self.height / 2;
-            let w = (self.width as usize).min(60);
-            let x = (self.width as usize - w) / 2;
+    fn render_tool_approval(&mut self, app: &App, cols: u16, rows: u16) -> anyhow::Result<()> {
+        let Some(tool) = &app.pending_tool else {
+            return Ok(());
+        };
+        let palette = palette_from_kura_theme(app);
 
-            queue!(
-                self.stdout,
-                SetBackgroundColor(app.theme.warn),
-                SetForegroundColor(app.theme.bg),
-                MoveTo(x as u16, y),
-            )?;
-
-            let line1 = format!(" Tool: {} ", tool.name);
-            self.write_line(&line1, app.theme.bg, app.theme.warn, w as u16)?;
-
-            queue!(self.stdout, MoveTo(x as u16, y + 1))?;
-            let input_str = serde_json::to_string(&tool.input).unwrap_or_default();
-            let truncated = &input_str[..input_str.len().min(w as usize - 4)];
-            let line2 = format!(" {} ", truncated);
-            self.write_line(&line2, app.theme.bg, app.theme.warn, w as u16)?;
-
-            queue!(self.stdout, MoveTo(x as u16, y + 2))?;
-            let line3 = " [y] approve  [n] deny ";
-            self.write_line(line3, app.theme.bg, app.theme.warn, w as u16)?;
-        }
-        Ok(())
-    }
-
-    fn write_line(&mut self, text: &str, fg: Color, bg: Color, width: u16) -> anyhow::Result<()> {
-        let padded = format!("{:<width$}", text, width = width as usize);
-        let truncated: String = padded.chars().take(width as usize).collect();
-        queue!(
-            self.stdout,
-            SetForegroundColor(fg),
-            SetBackgroundColor(bg),
-            style::Print(&truncated),
-        )?;
-        Ok(())
+        // Centre in the upper-half of the screen so the user can still see
+        // the input bar context. egaku::Modal is a visibility toggle;
+        // since we already gated on focus we render it visible.
+        let mut overlay = Modal::new(&format!("Tool approval — {}", tool.name));
+        overlay.show();
+        let bounds = Rect::new(
+            0.0,
+            0.0,
+            f32::from(cols),
+            f32::from(rows.saturating_sub(2)),
+        );
+        let input_str = serde_json::to_string(&tool.input).unwrap_or_default();
+        let truncated_input: String =
+            input_str.chars().take(160).collect::<String>();
+        let body = vec![
+            truncated_input.as_str(),
+            "",
+            "[y] approve     [n] deny",
+        ];
+        draw::modal_with(self.term, bounds, &overlay, &body, &palette)
+            .map_err(map_err)
     }
 }
+
+/// Copy a [`KuraTheme`] into an egaku-term [`Palette`] so drawers can
+/// pull semantic colors. KuraTheme already carries crossterm `Color`
+/// values, so the conversion is field-by-field.
+fn palette_from_kura_theme(app: &App) -> Palette {
+    Palette {
+        background: app.theme.bg,
+        foreground: app.theme.fg,
+        accent: app.theme.accent,
+        error: app.theme.error,
+        warning: app.theme.warn,
+        success: app.theme.success,
+        selection: app.theme.selection_bg,
+        muted: app.theme.muted,
+        border: app.theme.border,
+    }
+}
+
+#[allow(clippy::cast_precision_loss)]
+fn layout_rect(r: &crate::layout::Rect) -> Rect {
+    Rect::new(
+        f32::from(r.x),
+        f32::from(r.y),
+        f32::from(r.width),
+        f32::from(r.height),
+    )
+}
+
+fn map_err(e: egaku_term::Error) -> anyhow::Error {
+    anyhow::anyhow!("{e}")
+}
+
+fn help_text() -> String {
+    [
+        "kura — help",
+        "",
+        "i / Tab     focus input",
+        "Enter       submit input",
+        "Esc         unfocus / cancel",
+        "j / k       scroll conversation",
+        "t           toggle thinking display",
+        "o           toggle tool output display",
+        "n           new session",
+        "Ctrl+Up     cycle provider",
+        "q           quit",
+        "",
+        "Ghostty-native: Kitty Graphics, Kitty Keyboard, Synced Output",
+        "Config: shikumi (YAML/TOML/Lisp/Nix) + tatara-lisp (defprovider, defagent, defkeymap)",
+    ]
+    .join("\n")
+}
+
+// `io` is referenced via map_err's lifetime contract on Terminal; mark it
+// to keep clippy happy without a top-level allow.
+const _: fn() = || {
+    let _ = std::mem::size_of::<io::Error>();
+};

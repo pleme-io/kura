@@ -23,6 +23,7 @@ tatara-lisp   = { workspace = true }
 shikumi       = { workspace = true }
 clap          = { workspace = true }
 crossterm     = { workspace = true }
+egaku-term    = { workspace = true }
 tokio         = { workspace = true }
 tracing       = { workspace = true }
 tracing-subscriber = { workspace = true }

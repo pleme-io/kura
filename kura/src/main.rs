@@ -5,7 +5,8 @@ use kura_core::register_all;
 use kura_provider::ProviderRouter;
 use kura_run::{parse_file, DagExecutor};
 use kura_tool::ToolExecutor;
-use kura_tui::{App, KuraTheme, TuiEventStream, detect_capabilities};
+use egaku_term::Terminal;
+use kura_tui::{App, KuraTheme, TuiEventStream, detect_capabilities, render::Renderer};
 
 #[derive(Parser)]
 #[command(
@@ -110,11 +111,18 @@ async fn run_tui(
     app.setup_ghostty();
 
     let _guard = kura_ghostty::TerminalRestoreGuard::new()?;
+    // kura_ghostty::TerminalRestoreGuard already owns raw mode + alt
+    // screen lifecycle for this binary, so egaku-term wraps stdout
+    // without re-entering it.
+    let mut term = Terminal::borrow_stdout();
 
     let mut event_stream = crossterm::event::EventStream::new();
     let mut tui_events = TuiEventStream::new(capabilities, std::time::Duration::from_millis(100));
 
     let mut conversation = Conversation::new(spec.system_prompt.clone());
+
+    // Initial paint so the user sees the UI before pressing anything.
+    Renderer::new(&mut term).render(&app)?;
 
     while app.running {
         if let Some(tui_event) = tui_events.next_event(&mut event_stream).await {
@@ -129,6 +137,8 @@ async fn run_tui(
                     _ => {}
                 }
             }
+            // Repaint after each event (or tick) so state changes show.
+            Renderer::new(&mut term).render(&app)?;
         }
     }
 
