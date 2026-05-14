@@ -43,6 +43,12 @@ serde        = { version = "1", features = ["derive"] }
 serde_json   = "1"
 blake3       = "1"
 hex          = "0.4"
+# moldura — fleet TUI app framework. Re-exports egaku + egaku-term +
+# crossterm + tatara-ui + shikumi + ishou-tokens under one pin.
+# Migration to moldura-only imports is M1 work; for now both moldura
+# and the direct deps coexist so the existing code paths keep working
+# while new code paths reach for moldura::{prelude,...}.
+moldura      = { git = "https://github.com/pleme-io/moldura" }
 crossterm    = { version = "0.28", features = ["event-stream"] }
 egaku-term   = { git = "https://github.com/pleme-io/egaku-term", tag = "v0.2.1" }
 egaku        = { git = "https://github.com/pleme-io/egaku" }
