@@ -485,6 +485,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "egaku-term"
+version = "0.2.1"
+source = "git+https://github.com/pleme-io/egaku-term#aa3fd63402577c624df499e5e3798d313e4fe6cd"
+dependencies = [
+ "crossterm",
+ "egaku",
+ "thiserror",
+ "unicode-width",
+]
+
+[[package]]
 name = "equivalent"
 version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1106,6 +1117,15 @@ dependencies = [
 [[package]]
 name = "irodori"
 version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0dc14b88cf12196c0f37995676c3cd75c34511436be9c41f7877edb8b1cfcb1e"
+dependencies = [
+ "serde",
+]
+
+[[package]]
+name = "irodori"
+version = "0.1.0"
 source = "git+https://github.com/pleme-io/irodori?branch=main#7f2a3b591d6fa33c779da74745b3a97af7f9d9c8"
 dependencies = [
  "serde",
@@ -1117,6 +1137,16 @@ name = "is_terminal_polyfill"
 version = "1.70.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a6cb138bb79a146c1bd460005623e142ef0181e3d0219cb493e02f7d08a35695"
+
+[[package]]
+name = "ishou-tokens"
+version = "0.1.0"
+source = "git+https://github.com/pleme-io/ishou#eecc320061a0b0af73cc5aa63696f95ccc6cec42"
+dependencies = [
+ "irodori 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "serde",
+ "serde_json",
+]
 
 [[package]]
 name = "itoa"
@@ -1177,7 +1207,7 @@ dependencies = [
  "anyhow",
  "clap",
  "crossterm",
- "egaku-term",
+ "egaku-term 0.2.1 (git+https://github.com/pleme-io/egaku-term?tag=v0.2.1)",
  "kura-agent",
  "kura-core",
  "kura-ghostty",
@@ -1185,8 +1215,9 @@ dependencies = [
  "kura-run",
  "kura-tool",
  "kura-tui",
- "shikumi",
- "tatara-lisp",
+ "moldura",
+ "shikumi 0.1.0 (git+https://github.com/pleme-io/shikumi?branch=main)",
+ "tatara-lisp 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
  "tokio",
  "tracing",
  "tracing-subscriber",
@@ -1204,7 +1235,7 @@ dependencies = [
  "kura-tool",
  "serde",
  "serde_json",
- "tatara-lisp",
+ "tatara-lisp 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
  "tempfile",
  "tokio",
  "tokio-stream",
@@ -1221,7 +1252,7 @@ dependencies = [
  "kura-core",
  "kura-lattice",
  "serde_json",
- "tatara-lisp",
+ "tatara-lisp 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
 ]
 
 [[package]]
@@ -1233,8 +1264,8 @@ dependencies = [
  "hex",
  "serde",
  "serde_json",
- "tatara-lisp",
- "tatara-lisp-derive",
+ "tatara-lisp 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
+ "tatara-lisp-derive 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
  "thiserror",
  "uuid",
 ]
@@ -1272,7 +1303,7 @@ dependencies = [
  "reqwest",
  "serde",
  "serde_json",
- "shikumi",
+ "shikumi 0.1.0 (git+https://github.com/pleme-io/shikumi?branch=main)",
  "tokio",
  "tracing",
 ]
@@ -1293,7 +1324,7 @@ dependencies = [
  "serde_json",
  "serde_yaml",
  "serde_yaml_ng",
- "tatara-lisp",
+ "tatara-lisp 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
  "tempfile",
  "thiserror",
  "tokio",
@@ -1327,8 +1358,8 @@ dependencies = [
  "anyhow",
  "crossterm",
  "egaku",
- "egaku-term",
- "irodori",
+ "egaku-term 0.2.1 (git+https://github.com/pleme-io/egaku-term?tag=v0.2.1)",
+ "irodori 0.1.0 (git+https://github.com/pleme-io/irodori?branch=main)",
  "kura-agent",
  "kura-core",
  "kura-ghostty",
@@ -1337,8 +1368,8 @@ dependencies = [
  "parking_lot",
  "serde",
  "serde_json",
- "shikumi",
- "tatara-ui",
+ "shikumi 0.1.0 (git+https://github.com/pleme-io/shikumi?branch=main)",
+ "tatara-ui 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
  "tokio",
  "tokio-stream",
  "tracing",
@@ -1361,6 +1392,15 @@ name = "libc"
 version = "0.2.185"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "52ff2c0fe9bc6cb6b14a0592c2ff4fa9ceb83eea9db979b0487cd054946a2b8f"
+
+[[package]]
+name = "libmimalloc-sys"
+version = "0.1.47"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2d1eacfa31c33ec25e873c136ba5669f00f9866d0688bea7be4d3f7e43067df6"
+dependencies = [
+ "cc",
+]
 
 [[package]]
 name = "libredox"
@@ -1426,6 +1466,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f8ca58f447f06ed17d5fc4043ce1b10dd205e060fb3ce5b979b8ed8e59ff3f79"
 
 [[package]]
+name = "mimalloc"
+version = "0.1.50"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b3627c4272df786b9260cabaa46aec1d59c93ede723d4c3ef646c503816b0640"
+dependencies = [
+ "libmimalloc-sys",
+]
+
+[[package]]
 name = "miniz_oxide"
 version = "0.8.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1457,6 +1506,30 @@ dependencies = [
  "thiserror",
  "tracing",
  "unicode-width",
+]
+
+[[package]]
+name = "moldura"
+version = "0.1.0"
+source = "git+https://github.com/pleme-io/moldura#abea4c69c698e5972e10f5fb9478ff3ce7f8a5a4"
+dependencies = [
+ "anyhow",
+ "arc-swap",
+ "crossterm",
+ "egaku",
+ "egaku-term 0.2.1 (git+https://github.com/pleme-io/egaku-term)",
+ "ishou-tokens",
+ "mimalloc",
+ "notify",
+ "once_cell",
+ "parking_lot",
+ "serde",
+ "serde_yaml_ng",
+ "shikumi 0.1.0 (git+https://github.com/pleme-io/shikumi)",
+ "tatara-ui 0.2.0 (git+https://github.com/pleme-io/tatara)",
+ "thiserror",
+ "tracing",
+ "tracing-subscriber",
 ]
 
 [[package]]
@@ -2319,6 +2392,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "shikumi"
+version = "0.1.0"
+source = "git+https://github.com/pleme-io/shikumi#dad6ccfdb25ee472c0d6715f832802a6d3dcf6f0"
+dependencies = [
+ "arc-swap",
+ "async-trait",
+ "figment",
+ "notify",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "tracing",
+]
+
+[[package]]
 name = "shlex"
 version = "1.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2440,7 +2528,19 @@ dependencies = [
  "blake3",
  "serde",
  "serde_json",
- "tatara-lisp-derive",
+ "tatara-lisp-derive 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
+ "thiserror",
+]
+
+[[package]]
+name = "tatara-lisp"
+version = "0.2.0"
+source = "git+https://github.com/pleme-io/tatara#18c84c75e3b0d44f40e8790f3b51b6c11456d011"
+dependencies = [
+ "blake3",
+ "serde",
+ "serde_json",
+ "tatara-lisp-derive 0.2.0 (git+https://github.com/pleme-io/tatara)",
  "thiserror",
 ]
 
@@ -2448,6 +2548,16 @@ dependencies = [
 name = "tatara-lisp-derive"
 version = "0.2.0"
 source = "git+https://github.com/pleme-io/tatara?branch=main#4defb1e79b99d8729cb8f00d53bc42ef43da17b0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "tatara-lisp-derive"
+version = "0.2.0"
+source = "git+https://github.com/pleme-io/tatara#18c84c75e3b0d44f40e8790f3b51b6c11456d011"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -2465,8 +2575,24 @@ dependencies = [
  "owo-colors",
  "serde",
  "serde_json",
- "tatara-lisp",
- "tatara-lisp-derive",
+ "tatara-lisp 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
+ "tatara-lisp-derive 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
+ "thiserror",
+]
+
+[[package]]
+name = "tatara-ui"
+version = "0.2.0"
+source = "git+https://github.com/pleme-io/tatara#18c84c75e3b0d44f40e8790f3b51b6c11456d011"
+dependencies = [
+ "blake3",
+ "hex",
+ "libc",
+ "owo-colors",
+ "serde",
+ "serde_json",
+ "tatara-lisp 0.2.0 (git+https://github.com/pleme-io/tatara)",
+ "tatara-lisp-derive 0.2.0 (git+https://github.com/pleme-io/tatara)",
  "thiserror",
 ]
 

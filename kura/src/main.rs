@@ -1,3 +1,8 @@
+// Install mimalloc as the global allocator via moldura — same
+// pattern mado / tear / every fleet TUI uses. Free 5–15% allocator
+// perf on kura's PTY pump + scrollback push hot paths.
+moldura::mimalloc_init!();
+
 use anyhow::Result;
 use clap::{Parser, Subcommand};
 use kura_agent::{Conversation, SessionStore};
