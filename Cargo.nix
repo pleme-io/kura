@@ -8795,7 +8795,7 @@ rec {
         src = pkgs.fetchgit {
           url = "https://github.com/pleme-io/tatara";
           rev = "18c84c75e3b0d44f40e8790f3b51b6c11456d011";
-          sha256 = "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a";
+          sha256 = "1s6w5frzb634s558i13cv0693qg9cg3laj3c1pvi5x9q9yssnz9k";
         };
         libName = "tatara_lisp";
         authors = [
@@ -8837,7 +8837,7 @@ rec {
         src = pkgs.fetchgit {
           url = "https://github.com/pleme-io/tatara";
           rev = "18c84c75e3b0d44f40e8790f3b51b6c11456d011";
-          sha256 = "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a";
+          sha256 = "1s6w5frzb634s558i13cv0693qg9cg3laj3c1pvi5x9q9yssnz9k";
         };
         procMacro = true;
         libName = "tatara_lisp_derive";
@@ -8869,7 +8869,7 @@ rec {
         src = pkgs.fetchgit {
           url = "https://github.com/pleme-io/tatara";
           rev = "18c84c75e3b0d44f40e8790f3b51b6c11456d011";
-          sha256 = "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a";
+          sha256 = "1s6w5frzb634s558i13cv0693qg9cg3laj3c1pvi5x9q9yssnz9k";
         };
         libName = "tatara_ui";
         authors = [

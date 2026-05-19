@@ -9,7 +9,7 @@
   "git+https://github.com/pleme-io/mojiban#0.1.0": "14ak8gjfxbpfrbakc0zzrvic0j05flql6zqgkjmr2zpbrdh1g4x9",
   "git+https://github.com/pleme-io/moldura#0.1.0": "1b68gc62rhm2whhfbfqf5kig3036mfn88g5xlw35h9j7w04mdfyn",
   "git+https://github.com/pleme-io/shikumi#0.1.0": "06xx204px5qyfngpsb6vayal5ffyraqpfxwy86gab5sxv53sl575",
-  "git+https://github.com/pleme-io/tatara#tatara-lisp-derive@0.2.0": "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a",
-  "git+https://github.com/pleme-io/tatara#tatara-lisp@0.2.0": "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a",
-  "git+https://github.com/pleme-io/tatara#tatara-ui@0.2.0": "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a"
+  "git+https://github.com/pleme-io/tatara#tatara-lisp-derive@0.2.0": "1s6w5frzb634s558i13cv0693qg9cg3laj3c1pvi5x9q9yssnz9k",
+  "git+https://github.com/pleme-io/tatara#tatara-lisp@0.2.0": "1s6w5frzb634s558i13cv0693qg9cg3laj3c1pvi5x9q9yssnz9k",
+  "git+https://github.com/pleme-io/tatara#tatara-ui@0.2.0": "1s6w5frzb634s558i13cv0693qg9cg3laj3c1pvi5x9q9yssnz9k"
 }
