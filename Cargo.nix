@@ -1459,6 +1459,41 @@ rec {
         ];
 
       };
+      "egaku" = rec {
+        crateName = "egaku";
+        version = "0.1.0";
+        edition = "2024";
+        workspace_member = null;
+        src = pkgs.fetchgit {
+          url = "https://github.com/pleme-io/egaku";
+          rev = "b67e5bb1ab7b817bcc2ecd4ef7a8ea0e06fa814f";
+          sha256 = "0sdr8mg3rq9r8nhg7wm77v7nh2z4vx3j5p3qswkgfacgpbvkalqa";
+        };
+        dependencies = [
+          {
+            name = "serde";
+            packageId = "serde";
+            features = [ "derive" ];
+          }
+          {
+            name = "thiserror";
+            packageId = "thiserror";
+          }
+          {
+            name = "tracing";
+            packageId = "tracing";
+          }
+          {
+            name = "unicode-segmentation";
+            packageId = "unicode-segmentation";
+          }
+          {
+            name = "unicode-width";
+            packageId = "unicode-width";
+          }
+        ];
+
+      };
       "equivalent" = rec {
         crateName = "equivalent";
         version = "1.0.2";
@@ -2333,6 +2368,481 @@ rec {
           "sys_rng" = [ "dep:rand_core" ];
           "wasm_js" = [ "dep:wasm-bindgen" "dep:js-sys" ];
         };
+      };
+      "git+https://github.com/pleme-io/egaku-term#0.2.1" = rec {
+        crateName = "egaku-term";
+        version = "0.2.1";
+        edition = "2024";
+        workspace_member = null;
+        src = pkgs.fetchgit {
+          url = "https://github.com/pleme-io/egaku-term";
+          rev = "aa3fd63402577c624df499e5e3798d313e4fe6cd";
+          sha256 = "02hjvz74nra29ldpyvf7kn8a4g77fzn2wzjqq0hmghbwmmrj5yac";
+        };
+        libName = "egaku_term";
+        dependencies = [
+          {
+            name = "crossterm";
+            packageId = "crossterm";
+          }
+          {
+            name = "egaku";
+            packageId = "egaku";
+          }
+          {
+            name = "thiserror";
+            packageId = "thiserror";
+          }
+          {
+            name = "unicode-width";
+            packageId = "unicode-width";
+          }
+        ];
+        features = {
+          "tokio" = [ "dep:tokio" "dep:futures-util" "crossterm/event-stream" ];
+        };
+        resolvedDefaultFeatures = [ "default" ];
+      };
+      "git+https://github.com/pleme-io/egaku-term?tag=v0.2.1#0.2.1" = rec {
+        crateName = "egaku-term";
+        version = "0.2.1";
+        edition = "2024";
+        workspace_member = null;
+        src = pkgs.fetchgit {
+          url = "https://github.com/pleme-io/egaku-term";
+          rev = "aa3fd63402577c624df499e5e3798d313e4fe6cd";
+          sha256 = "02hjvz74nra29ldpyvf7kn8a4g77fzn2wzjqq0hmghbwmmrj5yac";
+        };
+        libName = "egaku_term";
+        dependencies = [
+          {
+            name = "crossterm";
+            packageId = "crossterm";
+          }
+          {
+            name = "egaku";
+            packageId = "egaku";
+          }
+          {
+            name = "thiserror";
+            packageId = "thiserror";
+          }
+          {
+            name = "unicode-width";
+            packageId = "unicode-width";
+          }
+        ];
+        features = {
+          "tokio" = [ "dep:tokio" "dep:futures-util" "crossterm/event-stream" ];
+        };
+        resolvedDefaultFeatures = [ "default" ];
+      };
+      "git+https://github.com/pleme-io/irodori?branch=main#0.1.0" = rec {
+        crateName = "irodori";
+        version = "0.1.0";
+        edition = "2024";
+        workspace_member = null;
+        src = pkgs.fetchgit {
+          url = "https://github.com/pleme-io/irodori";
+          rev = "7f2a3b591d6fa33c779da74745b3a97af7f9d9c8";
+          sha256 = "17wdvrdz7bx4rhy53scrrrhanlj92x0mv8cfr5srl0kz91aahwis";
+        };
+        dependencies = [
+          {
+            name = "serde";
+            packageId = "serde";
+            features = [ "derive" ];
+          }
+          {
+            name = "thiserror";
+            packageId = "thiserror";
+          }
+        ];
+
+      };
+      "git+https://github.com/pleme-io/shikumi#0.1.0" = rec {
+        crateName = "shikumi";
+        version = "0.1.0";
+        edition = "2024";
+        workspace_member = null;
+        src = pkgs.fetchgit {
+          url = "https://github.com/pleme-io/shikumi";
+          rev = "dad6ccfdb25ee472c0d6715f832802a6d3dcf6f0";
+          sha256 = "06xx204px5qyfngpsb6vayal5ffyraqpfxwy86gab5sxv53sl575";
+        };
+        dependencies = [
+          {
+            name = "arc-swap";
+            packageId = "arc-swap";
+          }
+          {
+            name = "async-trait";
+            packageId = "async-trait";
+          }
+          {
+            name = "figment";
+            packageId = "figment";
+            features = [ "env" "yaml" "toml" ];
+          }
+          {
+            name = "notify";
+            packageId = "notify";
+          }
+          {
+            name = "serde";
+            packageId = "serde";
+            features = [ "derive" ];
+          }
+          {
+            name = "serde_json";
+            packageId = "serde_json";
+          }
+          {
+            name = "thiserror";
+            packageId = "thiserror";
+          }
+          {
+            name = "tracing";
+            packageId = "tracing";
+          }
+        ];
+        devDependencies = [
+          {
+            name = "serde_json";
+            packageId = "serde_json";
+          }
+        ];
+        features = {
+          "akeyless-native" = [ "dep:akeyless-api" "dep:tokio" ];
+          "aws-native" = [ "dep:aws-sdk-secretsmanager" "dep:aws-config" "dep:tokio" ];
+          "gcp-native" = [ "dep:reqwest" "dep:tokio" ];
+          "lisp" = [ "dep:tatara-lisp" ];
+          "op-native" = [ "dep:reqwest" "dep:tokio" ];
+          "vault-native" = [ "dep:reqwest" "dep:tokio" ];
+        };
+        resolvedDefaultFeatures = [ "default" ];
+      };
+      "git+https://github.com/pleme-io/shikumi?branch=main#0.1.0" = rec {
+        crateName = "shikumi";
+        version = "0.1.0";
+        edition = "2024";
+        workspace_member = null;
+        src = pkgs.fetchgit {
+          url = "https://github.com/pleme-io/shikumi";
+          rev = "940dded0d0b72fcc001139357ac349c1e4b90a8f";
+          sha256 = "05vm63mc3rlzbwl6i0c60cxs7vmbfdrlvpzzf17v59zwfrw7fs29";
+        };
+        dependencies = [
+          {
+            name = "arc-swap";
+            packageId = "arc-swap";
+          }
+          {
+            name = "async-trait";
+            packageId = "async-trait";
+          }
+          {
+            name = "figment";
+            packageId = "figment";
+            features = [ "env" "yaml" "toml" ];
+          }
+          {
+            name = "notify";
+            packageId = "notify";
+          }
+          {
+            name = "serde";
+            packageId = "serde";
+            features = [ "derive" ];
+          }
+          {
+            name = "serde_json";
+            packageId = "serde_json";
+          }
+          {
+            name = "thiserror";
+            packageId = "thiserror";
+          }
+          {
+            name = "tracing";
+            packageId = "tracing";
+          }
+        ];
+        devDependencies = [
+          {
+            name = "serde_json";
+            packageId = "serde_json";
+          }
+        ];
+        features = {
+          "akeyless-native" = [ "dep:akeyless-api" "dep:tokio" ];
+          "aws-native" = [ "dep:aws-sdk-secretsmanager" "dep:aws-config" "dep:tokio" ];
+          "gcp-native" = [ "dep:reqwest" "dep:tokio" ];
+          "lisp" = [ "dep:tatara-lisp" ];
+          "op-native" = [ "dep:reqwest" "dep:tokio" ];
+          "vault-native" = [ "dep:reqwest" "dep:tokio" ];
+        };
+        resolvedDefaultFeatures = [ "default" ];
+      };
+      "git+https://github.com/pleme-io/tatara#tatara-lisp-derive@0.2.0" = rec {
+        crateName = "tatara-lisp-derive";
+        version = "0.2.0";
+        edition = "2021";
+        workspace_member = null;
+        src = pkgs.fetchgit {
+          url = "https://github.com/pleme-io/tatara";
+          rev = "18c84c75e3b0d44f40e8790f3b51b6c11456d011";
+          sha256 = "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a";
+        };
+        procMacro = true;
+        libName = "tatara_lisp_derive";
+        authors = [
+          "Pleme.io <engineering@pleme.io>"
+        ];
+        dependencies = [
+          {
+            name = "proc-macro2";
+            packageId = "proc-macro2";
+          }
+          {
+            name = "quote";
+            packageId = "quote";
+          }
+          {
+            name = "syn";
+            packageId = "syn";
+            features = [ "full" ];
+          }
+        ];
+
+      };
+      "git+https://github.com/pleme-io/tatara#tatara-lisp@0.2.0" = rec {
+        crateName = "tatara-lisp";
+        version = "0.2.0";
+        edition = "2021";
+        workspace_member = null;
+        src = pkgs.fetchgit {
+          url = "https://github.com/pleme-io/tatara";
+          rev = "18c84c75e3b0d44f40e8790f3b51b6c11456d011";
+          sha256 = "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a";
+        };
+        libName = "tatara_lisp";
+        authors = [
+          "Pleme.io <engineering@pleme.io>"
+        ];
+        dependencies = [
+          {
+            name = "blake3";
+            packageId = "blake3";
+          }
+          {
+            name = "tatara-lisp-derive";
+            packageId = "git+https://github.com/pleme-io/tatara#tatara-lisp-derive@0.2.0";
+          }
+          {
+            name = "serde";
+            packageId = "serde";
+            features = [ "derive" ];
+          }
+          {
+            name = "serde_json";
+            packageId = "serde_json";
+          }
+          {
+            name = "thiserror";
+            packageId = "thiserror";
+          }
+        ];
+        features = {
+          "iac-forge" = [ "dep:iac-forge" ];
+        };
+        resolvedDefaultFeatures = [ "default" ];
+      };
+      "git+https://github.com/pleme-io/tatara#tatara-ui@0.2.0" = rec {
+        crateName = "tatara-ui";
+        version = "0.2.0";
+        edition = "2021";
+        workspace_member = null;
+        src = pkgs.fetchgit {
+          url = "https://github.com/pleme-io/tatara";
+          rev = "18c84c75e3b0d44f40e8790f3b51b6c11456d011";
+          sha256 = "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a";
+        };
+        libName = "tatara_ui";
+        authors = [
+          "Pleme.io <engineering@pleme.io>"
+        ];
+        dependencies = [
+          {
+            name = "blake3";
+            packageId = "blake3";
+          }
+          {
+            name = "tatara-lisp-derive";
+            packageId = "git+https://github.com/pleme-io/tatara#tatara-lisp-derive@0.2.0";
+          }
+          {
+            name = "tatara-lisp";
+            packageId = "git+https://github.com/pleme-io/tatara#tatara-lisp@0.2.0";
+          }
+          {
+            name = "hex";
+            packageId = "hex";
+          }
+          {
+            name = "libc";
+            packageId = "libc";
+            target = { target, features }: (target."unix" or false);
+          }
+          {
+            name = "owo-colors";
+            packageId = "owo-colors";
+          }
+          {
+            name = "serde";
+            packageId = "serde";
+            features = [ "derive" ];
+          }
+          {
+            name = "serde_json";
+            packageId = "serde_json";
+          }
+          {
+            name = "thiserror";
+            packageId = "thiserror";
+          }
+        ];
+
+      };
+      "git+https://github.com/pleme-io/tatara?branch=main#tatara-lisp-derive@0.2.0" = rec {
+        crateName = "tatara-lisp-derive";
+        version = "0.2.0";
+        edition = "2021";
+        workspace_member = null;
+        src = pkgs.fetchgit {
+          url = "https://github.com/pleme-io/tatara";
+          rev = "4defb1e79b99d8729cb8f00d53bc42ef43da17b0";
+          sha256 = "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a";
+        };
+        procMacro = true;
+        libName = "tatara_lisp_derive";
+        authors = [
+          "Pleme.io <engineering@pleme.io>"
+        ];
+        dependencies = [
+          {
+            name = "proc-macro2";
+            packageId = "proc-macro2";
+          }
+          {
+            name = "quote";
+            packageId = "quote";
+          }
+          {
+            name = "syn";
+            packageId = "syn";
+            features = [ "full" ];
+          }
+        ];
+
+      };
+      "git+https://github.com/pleme-io/tatara?branch=main#tatara-lisp@0.2.0" = rec {
+        crateName = "tatara-lisp";
+        version = "0.2.0";
+        edition = "2021";
+        workspace_member = null;
+        src = pkgs.fetchgit {
+          url = "https://github.com/pleme-io/tatara";
+          rev = "4defb1e79b99d8729cb8f00d53bc42ef43da17b0";
+          sha256 = "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a";
+        };
+        libName = "tatara_lisp";
+        authors = [
+          "Pleme.io <engineering@pleme.io>"
+        ];
+        dependencies = [
+          {
+            name = "blake3";
+            packageId = "blake3";
+          }
+          {
+            name = "tatara-lisp-derive";
+            packageId = "git+https://github.com/pleme-io/tatara?branch=main#tatara-lisp-derive@0.2.0";
+          }
+          {
+            name = "serde";
+            packageId = "serde";
+            features = [ "derive" ];
+          }
+          {
+            name = "serde_json";
+            packageId = "serde_json";
+          }
+          {
+            name = "thiserror";
+            packageId = "thiserror";
+          }
+        ];
+        features = {
+          "iac-forge" = [ "dep:iac-forge" ];
+        };
+        resolvedDefaultFeatures = [ "default" ];
+      };
+      "git+https://github.com/pleme-io/tatara?branch=main#tatara-ui@0.2.0" = rec {
+        crateName = "tatara-ui";
+        version = "0.2.0";
+        edition = "2021";
+        workspace_member = null;
+        src = pkgs.fetchgit {
+          url = "https://github.com/pleme-io/tatara";
+          rev = "4defb1e79b99d8729cb8f00d53bc42ef43da17b0";
+          sha256 = "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a";
+        };
+        libName = "tatara_ui";
+        authors = [
+          "Pleme.io <engineering@pleme.io>"
+        ];
+        dependencies = [
+          {
+            name = "blake3";
+            packageId = "blake3";
+          }
+          {
+            name = "tatara-lisp-derive";
+            packageId = "git+https://github.com/pleme-io/tatara?branch=main#tatara-lisp-derive@0.2.0";
+          }
+          {
+            name = "tatara-lisp";
+            packageId = "git+https://github.com/pleme-io/tatara?branch=main#tatara-lisp@0.2.0";
+          }
+          {
+            name = "hex";
+            packageId = "hex";
+          }
+          {
+            name = "libc";
+            packageId = "libc";
+            target = { target, features }: (target."unix" or false);
+          }
+          {
+            name = "owo-colors";
+            packageId = "owo-colors";
+          }
+          {
+            name = "serde";
+            packageId = "serde";
+            features = [ "derive" ];
+          }
+          {
+            name = "serde_json";
+            packageId = "serde_json";
+          }
+          {
+            name = "thiserror";
+            packageId = "thiserror";
+          }
+        ];
+
       };
       "half" = rec {
         crateName = "half";
@@ -3557,35 +4067,43 @@ rec {
         };
         resolvedDefaultFeatures = [ "alloc" "default" "std" ];
       };
-      "irodori" = rec {
-        crateName = "irodori";
-        version = "0.1.0";
-        edition = "2024";
-        workspace_member = null;
-        src = pkgs.fetchgit {
-          url = "https://github.com/pleme-io/irodori";
-          rev = "7f2a3b591d6fa33c779da74745b3a97af7f9d9c8";
-          sha256 = "17wdvrdz7bx4rhy53scrrrhanlj92x0mv8cfr5srl0kz91aahwis";
-        };
-        dependencies = [
-          {
-            name = "serde";
-            packageId = "serde";
-            features = [ "derive" ];
-          }
-          {
-            name = "thiserror";
-            packageId = "thiserror";
-          }
-        ];
-
-      };
       "is_terminal_polyfill" = rec {
         crateName = "is_terminal_polyfill";
         version = "1.70.2";
         edition = "2021";
         sha256 = "15anlc47sbz0jfs9q8fhwf0h3vs2w4imc030shdnq54sny5i7jx6";
         features = {
+        };
+        resolvedDefaultFeatures = [ "default" ];
+      };
+      "ishou-tokens" = rec {
+        crateName = "ishou-tokens";
+        version = "0.1.0";
+        edition = "2024";
+        workspace_member = null;
+        src = pkgs.fetchgit {
+          url = "https://github.com/pleme-io/ishou";
+          rev = "eecc320061a0b0af73cc5aa63696f95ccc6cec42";
+          sha256 = "0fbhnd881b5aykb6k6r2zixwffvhpl79mx5b1d3g7s5z0lfkjv7k";
+        };
+        libName = "ishou_tokens";
+        dependencies = [
+          {
+            name = "irodori";
+            packageId = "registry+https://github.com/rust-lang/crates.io-index#irodori@0.1.0";
+          }
+          {
+            name = "serde";
+            packageId = "serde";
+            features = [ "derive" ];
+          }
+          {
+            name = "serde_json";
+            packageId = "serde_json";
+          }
+        ];
+        features = {
+          "wgpu" = [ "dep:wgpu-types" ];
         };
         resolvedDefaultFeatures = [ "default" ];
       };
@@ -3760,6 +4278,18 @@ rec {
             features = [ "event-stream" ];
           }
           {
+            name = "egaku-term";
+            packageId = "git+https://github.com/pleme-io/egaku-term?tag=v0.2.1#0.2.1";
+          }
+          {
+            name = "shikumi";
+            packageId = "git+https://github.com/pleme-io/shikumi?branch=main#0.1.0";
+          }
+          {
+            name = "tatara-lisp";
+            packageId = "git+https://github.com/pleme-io/tatara?branch=main#tatara-lisp@0.2.0";
+          }
+          {
             name = "kura-agent";
             packageId = "kura-agent";
           }
@@ -3788,12 +4318,8 @@ rec {
             packageId = "kura-tui";
           }
           {
-            name = "shikumi";
-            packageId = "shikumi";
-          }
-          {
-            name = "tatara-lisp";
-            packageId = "tatara-lisp";
+            name = "moldura";
+            packageId = "moldura";
           }
           {
             name = "tokio";
@@ -3835,6 +4361,10 @@ rec {
             packageId = "dirs";
           }
           {
+            name = "tatara-lisp";
+            packageId = "git+https://github.com/pleme-io/tatara?branch=main#tatara-lisp@0.2.0";
+          }
+          {
             name = "kura-core";
             packageId = "kura-core";
           }
@@ -3854,10 +4384,6 @@ rec {
           {
             name = "serde_json";
             packageId = "serde_json";
-          }
-          {
-            name = "tatara-lisp";
-            packageId = "tatara-lisp";
           }
           {
             name = "tempfile";
@@ -3921,6 +4447,10 @@ rec {
             features = [ "derive" ];
           }
           {
+            name = "tatara-lisp";
+            packageId = "git+https://github.com/pleme-io/tatara?branch=main#tatara-lisp@0.2.0";
+          }
+          {
             name = "kura-core";
             packageId = "kura-core";
           }
@@ -3931,10 +4461,6 @@ rec {
           {
             name = "serde_json";
             packageId = "serde_json";
-          }
-          {
-            name = "tatara-lisp";
-            packageId = "tatara-lisp";
           }
         ];
 
@@ -3958,6 +4484,14 @@ rec {
             packageId = "chrono";
           }
           {
+            name = "tatara-lisp-derive";
+            packageId = "git+https://github.com/pleme-io/tatara?branch=main#tatara-lisp-derive@0.2.0";
+          }
+          {
+            name = "tatara-lisp";
+            packageId = "git+https://github.com/pleme-io/tatara?branch=main#tatara-lisp@0.2.0";
+          }
+          {
             name = "hex";
             packageId = "hex";
           }
@@ -3969,14 +4503,6 @@ rec {
           {
             name = "serde_json";
             packageId = "serde_json";
-          }
-          {
-            name = "tatara-lisp";
-            packageId = "tatara-lisp";
-          }
-          {
-            name = "tatara-lisp-derive";
-            packageId = "tatara-lisp-derive";
           }
           {
             name = "thiserror";
@@ -4083,6 +4609,10 @@ rec {
             packageId = "futures-util";
           }
           {
+            name = "shikumi";
+            packageId = "git+https://github.com/pleme-io/shikumi?branch=main#0.1.0";
+          }
+          {
             name = "kura-core";
             packageId = "kura-core";
           }
@@ -4100,10 +4630,6 @@ rec {
           {
             name = "serde_json";
             packageId = "serde_json";
-          }
-          {
-            name = "shikumi";
-            packageId = "shikumi";
           }
           {
             name = "tokio";
@@ -4156,6 +4682,10 @@ rec {
             packageId = "futures-util";
           }
           {
+            name = "tatara-lisp";
+            packageId = "git+https://github.com/pleme-io/tatara?branch=main#tatara-lisp@0.2.0";
+          }
+          {
             name = "kura-core";
             packageId = "kura-core";
           }
@@ -4179,10 +4709,6 @@ rec {
           {
             name = "serde_yaml_ng";
             packageId = "serde_yaml_ng";
-          }
-          {
-            name = "tatara-lisp";
-            packageId = "tatara-lisp";
           }
           {
             name = "thiserror";
@@ -4316,8 +4842,24 @@ rec {
             features = [ "event-stream" ];
           }
           {
+            name = "egaku";
+            packageId = "egaku";
+          }
+          {
+            name = "egaku-term";
+            packageId = "git+https://github.com/pleme-io/egaku-term?tag=v0.2.1#0.2.1";
+          }
+          {
             name = "irodori";
-            packageId = "irodori";
+            packageId = "git+https://github.com/pleme-io/irodori?branch=main#0.1.0";
+          }
+          {
+            name = "shikumi";
+            packageId = "git+https://github.com/pleme-io/shikumi?branch=main#0.1.0";
+          }
+          {
+            name = "tatara-ui";
+            packageId = "git+https://github.com/pleme-io/tatara?branch=main#tatara-ui@0.2.0";
           }
           {
             name = "kura-agent";
@@ -4351,14 +4893,6 @@ rec {
           {
             name = "serde_json";
             packageId = "serde_json";
-          }
-          {
-            name = "shikumi";
-            packageId = "shikumi";
-          }
-          {
-            name = "tatara-ui";
-            packageId = "tatara-ui";
           }
           {
             name = "tokio";
@@ -4416,6 +4950,27 @@ rec {
           "use_std" = [ "std" ];
         };
         resolvedDefaultFeatures = [ "default" "extra_traits" "std" ];
+      };
+      "libmimalloc-sys" = rec {
+        crateName = "libmimalloc-sys";
+        version = "0.1.47";
+        edition = "2018";
+        links = "mimalloc";
+        sha256 = "1xkx0r1pwgsdpskvx206dn3gj04zcsjnn4rwhxgc4gn367xaq7id";
+        libName = "libmimalloc_sys";
+        authors = [
+          "Octavian Oncescu <octavonce@gmail.com>"
+        ];
+        buildDependencies = [
+          {
+            name = "cc";
+            packageId = "cc";
+          }
+        ];
+        features = {
+          "cty" = [ "dep:cty" ];
+          "extended" = [ "cty" ];
+        };
       };
       "libredox" = rec {
         crateName = "libredox";
@@ -4592,6 +5147,34 @@ rec {
         };
         resolvedDefaultFeatures = [ "alloc" "default" "std" ];
       };
+      "mimalloc" = rec {
+        crateName = "mimalloc";
+        version = "0.1.50";
+        edition = "2018";
+        sha256 = "0h06df0h7ia6yqz4qgbjvqzcjn8xxima9fnac296ny6zf917qqmk";
+        authors = [
+          "Octavian Oncescu <octavonce@gmail.com>"
+          "Vincent Rouillé <vincent@speedy37.fr>"
+          "Thom Chiovoloni <chiovolonit@gmail.com>"
+        ];
+        dependencies = [
+          {
+            name = "libmimalloc-sys";
+            packageId = "libmimalloc-sys";
+            usesDefaultFeatures = false;
+          }
+        ];
+        features = {
+          "debug" = [ "libmimalloc-sys/debug" ];
+          "debug_in_debug" = [ "libmimalloc-sys/debug_in_debug" ];
+          "extended" = [ "libmimalloc-sys/extended" ];
+          "local_dynamic_tls" = [ "libmimalloc-sys/local_dynamic_tls" ];
+          "no_thp" = [ "libmimalloc-sys/no_thp" ];
+          "override" = [ "libmimalloc-sys/override" ];
+          "secure" = [ "libmimalloc-sys/secure" ];
+          "v2" = [ "libmimalloc-sys/v2" ];
+        };
+      };
       "miniz_oxide" = rec {
         crateName = "miniz_oxide";
         version = "0.8.9";
@@ -4700,6 +5283,100 @@ rec {
           }
         ];
 
+      };
+      "moldura" = rec {
+        crateName = "moldura";
+        version = "0.1.0";
+        edition = "2024";
+        workspace_member = null;
+        src = pkgs.fetchgit {
+          url = "https://github.com/pleme-io/moldura";
+          rev = "abea4c69c698e5972e10f5fb9478ff3ce7f8a5a4";
+          sha256 = "1b68gc62rhm2whhfbfqf5kig3036mfn88g5xlw35h9j7w04mdfyn";
+        };
+        authors = [
+          "pleme-io"
+        ];
+        dependencies = [
+          {
+            name = "anyhow";
+            packageId = "anyhow";
+          }
+          {
+            name = "arc-swap";
+            packageId = "arc-swap";
+          }
+          {
+            name = "crossterm";
+            packageId = "crossterm";
+            features = [ "event-stream" ];
+          }
+          {
+            name = "egaku";
+            packageId = "egaku";
+          }
+          {
+            name = "egaku-term";
+            packageId = "git+https://github.com/pleme-io/egaku-term#0.2.1";
+          }
+          {
+            name = "shikumi";
+            packageId = "git+https://github.com/pleme-io/shikumi#0.1.0";
+          }
+          {
+            name = "tatara-ui";
+            packageId = "git+https://github.com/pleme-io/tatara#tatara-ui@0.2.0";
+          }
+          {
+            name = "ishou-tokens";
+            packageId = "ishou-tokens";
+          }
+          {
+            name = "mimalloc";
+            packageId = "mimalloc";
+            usesDefaultFeatures = false;
+          }
+          {
+            name = "notify";
+            packageId = "notify";
+          }
+          {
+            name = "once_cell";
+            packageId = "once_cell";
+          }
+          {
+            name = "parking_lot";
+            packageId = "parking_lot";
+          }
+          {
+            name = "serde";
+            packageId = "serde";
+            features = [ "derive" ];
+          }
+          {
+            name = "serde_yaml_ng";
+            packageId = "serde_yaml_ng";
+          }
+          {
+            name = "thiserror";
+            packageId = "thiserror";
+          }
+          {
+            name = "tracing";
+            packageId = "tracing";
+          }
+          {
+            name = "tracing-subscriber";
+            packageId = "tracing-subscriber";
+            features = [ "env-filter" ];
+          }
+        ];
+        features = {
+          "default" = [ "sync" ];
+          "ratatui" = [ "dep:ratatui" "dep:ratatui-image" ];
+          "tokio" = [ "egaku-term/tokio" "dep:tokio" "dep:futures-util" ];
+        };
+        resolvedDefaultFeatures = [ "default" "sync" ];
       };
       "moxcms" = rec {
         crateName = "moxcms";
@@ -6729,6 +7406,20 @@ rec {
         };
         resolvedDefaultFeatures = [ "default" "std" "unicode" "unicode-age" "unicode-bool" "unicode-case" "unicode-gencat" "unicode-perl" "unicode-script" "unicode-segment" ];
       };
+      "registry+https://github.com/rust-lang/crates.io-index#irodori@0.1.0" = rec {
+        crateName = "irodori";
+        version = "0.1.0";
+        edition = "2024";
+        sha256 = "07nbryqvivbpg0gw9sbb8c8lbhvmrp1pcmlr6w7nq68jry44ph8d";
+        dependencies = [
+          {
+            name = "serde";
+            packageId = "serde";
+            features = [ "derive" ];
+          }
+        ];
+
+      };
       "reqwest" = rec {
         crateName = "reqwest";
         version = "0.12.28";
@@ -8111,68 +8802,6 @@ rec {
           "loom" = [ "dep:loom" ];
         };
       };
-      "shikumi" = rec {
-        crateName = "shikumi";
-        version = "0.1.0";
-        edition = "2024";
-        workspace_member = null;
-        src = pkgs.fetchgit {
-          url = "https://github.com/pleme-io/shikumi";
-          rev = "940dded0d0b72fcc001139357ac349c1e4b90a8f";
-          sha256 = "05vm63mc3rlzbwl6i0c60cxs7vmbfdrlvpzzf17v59zwfrw7fs29";
-        };
-        dependencies = [
-          {
-            name = "arc-swap";
-            packageId = "arc-swap";
-          }
-          {
-            name = "async-trait";
-            packageId = "async-trait";
-          }
-          {
-            name = "figment";
-            packageId = "figment";
-            features = [ "env" "yaml" "toml" ];
-          }
-          {
-            name = "notify";
-            packageId = "notify";
-          }
-          {
-            name = "serde";
-            packageId = "serde";
-            features = [ "derive" ];
-          }
-          {
-            name = "serde_json";
-            packageId = "serde_json";
-          }
-          {
-            name = "thiserror";
-            packageId = "thiserror";
-          }
-          {
-            name = "tracing";
-            packageId = "tracing";
-          }
-        ];
-        devDependencies = [
-          {
-            name = "serde_json";
-            packageId = "serde_json";
-          }
-        ];
-        features = {
-          "akeyless-native" = [ "dep:akeyless-api" "dep:tokio" ];
-          "aws-native" = [ "dep:aws-sdk-secretsmanager" "dep:aws-config" "dep:tokio" ];
-          "gcp-native" = [ "dep:reqwest" "dep:tokio" ];
-          "lisp" = [ "dep:tatara-lisp" ];
-          "op-native" = [ "dep:reqwest" "dep:tokio" ];
-          "vault-native" = [ "dep:reqwest" "dep:tokio" ];
-        };
-        resolvedDefaultFeatures = [ "default" ];
-      };
       "shlex" = rec {
         crateName = "shlex";
         version = "1.3.0";
@@ -8479,136 +9108,6 @@ rec {
           "proc-macro" = [ "proc-macro2/proc-macro" "syn/proc-macro" "quote/proc-macro" ];
         };
         resolvedDefaultFeatures = [ "default" "proc-macro" ];
-      };
-      "tatara-lisp" = rec {
-        crateName = "tatara-lisp";
-        version = "0.2.0";
-        edition = "2021";
-        workspace_member = null;
-        src = pkgs.fetchgit {
-          url = "https://github.com/pleme-io/tatara";
-          rev = "4defb1e79b99d8729cb8f00d53bc42ef43da17b0";
-          sha256 = "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a";
-        };
-        libName = "tatara_lisp";
-        authors = [
-          "Pleme.io <engineering@pleme.io>"
-        ];
-        dependencies = [
-          {
-            name = "blake3";
-            packageId = "blake3";
-          }
-          {
-            name = "serde";
-            packageId = "serde";
-            features = [ "derive" ];
-          }
-          {
-            name = "serde_json";
-            packageId = "serde_json";
-          }
-          {
-            name = "tatara-lisp-derive";
-            packageId = "tatara-lisp-derive";
-          }
-          {
-            name = "thiserror";
-            packageId = "thiserror";
-          }
-        ];
-        features = {
-          "iac-forge" = [ "dep:iac-forge" ];
-        };
-        resolvedDefaultFeatures = [ "default" ];
-      };
-      "tatara-lisp-derive" = rec {
-        crateName = "tatara-lisp-derive";
-        version = "0.2.0";
-        edition = "2021";
-        workspace_member = null;
-        src = pkgs.fetchgit {
-          url = "https://github.com/pleme-io/tatara";
-          rev = "4defb1e79b99d8729cb8f00d53bc42ef43da17b0";
-          sha256 = "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a";
-        };
-        procMacro = true;
-        libName = "tatara_lisp_derive";
-        authors = [
-          "Pleme.io <engineering@pleme.io>"
-        ];
-        dependencies = [
-          {
-            name = "proc-macro2";
-            packageId = "proc-macro2";
-          }
-          {
-            name = "quote";
-            packageId = "quote";
-          }
-          {
-            name = "syn";
-            packageId = "syn";
-            features = [ "full" ];
-          }
-        ];
-
-      };
-      "tatara-ui" = rec {
-        crateName = "tatara-ui";
-        version = "0.2.0";
-        edition = "2021";
-        workspace_member = null;
-        src = pkgs.fetchgit {
-          url = "https://github.com/pleme-io/tatara";
-          rev = "4defb1e79b99d8729cb8f00d53bc42ef43da17b0";
-          sha256 = "09dapmw65ql1zdcwwr6p9bhxlp16kc3mi7yrfaba54bvr4h4kn5a";
-        };
-        libName = "tatara_ui";
-        authors = [
-          "Pleme.io <engineering@pleme.io>"
-        ];
-        dependencies = [
-          {
-            name = "blake3";
-            packageId = "blake3";
-          }
-          {
-            name = "hex";
-            packageId = "hex";
-          }
-          {
-            name = "libc";
-            packageId = "libc";
-            target = { target, features }: (target."unix" or false);
-          }
-          {
-            name = "owo-colors";
-            packageId = "owo-colors";
-          }
-          {
-            name = "serde";
-            packageId = "serde";
-            features = [ "derive" ];
-          }
-          {
-            name = "serde_json";
-            packageId = "serde_json";
-          }
-          {
-            name = "tatara-lisp";
-            packageId = "tatara-lisp";
-          }
-          {
-            name = "tatara-lisp-derive";
-            packageId = "tatara-lisp-derive";
-          }
-          {
-            name = "thiserror";
-            packageId = "thiserror";
-          }
-        ];
-
       };
       "tempfile" = rec {
         crateName = "tempfile";
@@ -9810,6 +10309,19 @@ rec {
           "David Tolnay <dtolnay@gmail.com>"
         ];
 
+      };
+      "unicode-segmentation" = rec {
+        crateName = "unicode-segmentation";
+        version = "1.13.2";
+        edition = "2018";
+        sha256 = "135a26m4a0wj319gcw28j6a5aqvz00jmgwgmcs6szgxjf942facn";
+        libName = "unicode_segmentation";
+        authors = [
+          "kwantam <kwantam@gmail.com>"
+          "Manish Goregaokar <manishsmail@gmail.com>"
+        ];
+        features = {
+        };
       };
       "unicode-width" = rec {
         crateName = "unicode-width";
