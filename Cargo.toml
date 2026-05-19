@@ -31,14 +31,14 @@ kura-ghostty   = { path = "kura-ghostty" }
 kura-tui       = { path = "kura-tui" }
 kura-lattice   = { path = "kura-lattice" }
 kura-run      = { path = "kura-run" }
-tatara-lisp        = { git = "https://github.com/pleme-io/tatara", branch = "main" }
-tatara-lisp-derive = { git = "https://github.com/pleme-io/tatara", branch = "main" }
-tatara-ui          = { git = "https://github.com/pleme-io/tatara", branch = "main" }
-shikumi            = { git = "https://github.com/pleme-io/shikumi", branch = "main" }
-irodori            = { git = "https://github.com/pleme-io/irodori", branch = "main" }
-kaname             = { git = "https://github.com/pleme-io/kaname", branch = "main" }
-mojiban            = { git = "https://github.com/pleme-io/mojiban", branch = "main" }
-hasami             = { git = "https://github.com/pleme-io/hasami", branch = "main" }
+tatara-lisp        = { git = "https://github.com/pleme-io/tatara" }
+tatara-lisp-derive = { git = "https://github.com/pleme-io/tatara" }
+tatara-ui          = { git = "https://github.com/pleme-io/tatara" }
+shikumi            = { git = "https://github.com/pleme-io/shikumi" }
+irodori            = { git = "https://github.com/pleme-io/irodori" }
+kaname             = { git = "https://github.com/pleme-io/kaname" }
+mojiban            = { git = "https://github.com/pleme-io/mojiban" }
+hasami             = { git = "https://github.com/pleme-io/hasami" }
 serde        = { version = "1", features = ["derive"] }
 serde_json   = "1"
 blake3       = "1"

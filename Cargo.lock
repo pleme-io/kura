@@ -774,7 +774,7 @@ dependencies = [
 [[package]]
 name = "hasami"
 version = "0.1.0"
-source = "git+https://github.com/pleme-io/hasami?branch=main#69fd1dd4bd7523d4831b6dfc0addf34de744c652"
+source = "git+https://github.com/pleme-io/hasami#15459aa511efc350ecfaa745d9a0a5f55c35d796"
 dependencies = [
  "arboard",
  "thiserror",
@@ -1126,7 +1126,7 @@ dependencies = [
 [[package]]
 name = "irodori"
 version = "0.1.0"
-source = "git+https://github.com/pleme-io/irodori?branch=main#7f2a3b591d6fa33c779da74745b3a97af7f9d9c8"
+source = "git+https://github.com/pleme-io/irodori#bd20a962eebb8b465e3b05b0688490789a0585b0"
 dependencies = [
  "serde",
  "thiserror",
@@ -1169,7 +1169,7 @@ dependencies = [
 [[package]]
 name = "kaname"
 version = "0.1.0"
-source = "git+https://github.com/pleme-io/kaname?branch=main#6fabfe48b83c73df45940a9a64ca820162eec5e5"
+source = "git+https://github.com/pleme-io/kaname#098386a943f6ecd0fe25b27ef6a2ca15b49417af"
 dependencies = [
  "rmcp",
  "schemars",
@@ -1216,8 +1216,8 @@ dependencies = [
  "kura-tool",
  "kura-tui",
  "moldura",
- "shikumi 0.1.0 (git+https://github.com/pleme-io/shikumi?branch=main)",
- "tatara-lisp 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
+ "shikumi",
+ "tatara-lisp",
  "tokio",
  "tracing",
  "tracing-subscriber",
@@ -1235,7 +1235,7 @@ dependencies = [
  "kura-tool",
  "serde",
  "serde_json",
- "tatara-lisp 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
+ "tatara-lisp",
  "tempfile",
  "tokio",
  "tokio-stream",
@@ -1252,7 +1252,7 @@ dependencies = [
  "kura-core",
  "kura-lattice",
  "serde_json",
- "tatara-lisp 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
+ "tatara-lisp",
 ]
 
 [[package]]
@@ -1264,8 +1264,8 @@ dependencies = [
  "hex",
  "serde",
  "serde_json",
- "tatara-lisp 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
- "tatara-lisp-derive 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
+ "tatara-lisp",
+ "tatara-lisp-derive",
  "thiserror",
  "uuid",
 ]
@@ -1303,7 +1303,7 @@ dependencies = [
  "reqwest",
  "serde",
  "serde_json",
- "shikumi 0.1.0 (git+https://github.com/pleme-io/shikumi?branch=main)",
+ "shikumi",
  "tokio",
  "tracing",
 ]
@@ -1324,7 +1324,7 @@ dependencies = [
  "serde_json",
  "serde_yaml",
  "serde_yaml_ng",
- "tatara-lisp 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
+ "tatara-lisp",
  "tempfile",
  "thiserror",
  "tokio",
@@ -1359,7 +1359,7 @@ dependencies = [
  "crossterm",
  "egaku",
  "egaku-term 0.2.1 (git+https://github.com/pleme-io/egaku-term?tag=v0.2.1)",
- "irodori 0.1.0 (git+https://github.com/pleme-io/irodori?branch=main)",
+ "irodori 0.1.0 (git+https://github.com/pleme-io/irodori)",
  "kura-agent",
  "kura-core",
  "kura-ghostty",
@@ -1368,8 +1368,8 @@ dependencies = [
  "parking_lot",
  "serde",
  "serde_json",
- "shikumi 0.1.0 (git+https://github.com/pleme-io/shikumi?branch=main)",
- "tatara-ui 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
+ "shikumi",
+ "tatara-ui",
  "tokio",
  "tokio-stream",
  "tracing",
@@ -1499,7 +1499,7 @@ dependencies = [
 [[package]]
 name = "mojiban"
 version = "0.1.0"
-source = "git+https://github.com/pleme-io/mojiban?branch=main#50b17155b91aeb14b9e8c6afbdec42b7ccc5c174"
+source = "git+https://github.com/pleme-io/mojiban#c56760c5649ed7835f5f810828e114db913d47e2"
 dependencies = [
  "pulldown-cmark",
  "serde",
@@ -1525,8 +1525,8 @@ dependencies = [
  "parking_lot",
  "serde",
  "serde_yaml_ng",
- "shikumi 0.1.0 (git+https://github.com/pleme-io/shikumi)",
- "tatara-ui 0.2.0 (git+https://github.com/pleme-io/tatara)",
+ "shikumi",
+ "tatara-ui",
  "thiserror",
  "tracing",
  "tracing-subscriber",
@@ -2379,21 +2379,6 @@ dependencies = [
 [[package]]
 name = "shikumi"
 version = "0.1.0"
-source = "git+https://github.com/pleme-io/shikumi?branch=main#940dded0d0b72fcc001139357ac349c1e4b90a8f"
-dependencies = [
- "arc-swap",
- "async-trait",
- "figment",
- "notify",
- "serde",
- "serde_json",
- "thiserror",
- "tracing",
-]
-
-[[package]]
-name = "shikumi"
-version = "0.1.0"
 source = "git+https://github.com/pleme-io/shikumi#dad6ccfdb25ee472c0d6715f832802a6d3dcf6f0"
 dependencies = [
  "arc-swap",
@@ -2523,35 +2508,13 @@ dependencies = [
 [[package]]
 name = "tatara-lisp"
 version = "0.2.0"
-source = "git+https://github.com/pleme-io/tatara?branch=main#4defb1e79b99d8729cb8f00d53bc42ef43da17b0"
-dependencies = [
- "blake3",
- "serde",
- "serde_json",
- "tatara-lisp-derive 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
- "thiserror",
-]
-
-[[package]]
-name = "tatara-lisp"
-version = "0.2.0"
 source = "git+https://github.com/pleme-io/tatara#18c84c75e3b0d44f40e8790f3b51b6c11456d011"
 dependencies = [
  "blake3",
  "serde",
  "serde_json",
- "tatara-lisp-derive 0.2.0 (git+https://github.com/pleme-io/tatara)",
+ "tatara-lisp-derive",
  "thiserror",
-]
-
-[[package]]
-name = "tatara-lisp-derive"
-version = "0.2.0"
-source = "git+https://github.com/pleme-io/tatara?branch=main#4defb1e79b99d8729cb8f00d53bc42ef43da17b0"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn",
 ]
 
 [[package]]
@@ -2567,22 +2530,6 @@ dependencies = [
 [[package]]
 name = "tatara-ui"
 version = "0.2.0"
-source = "git+https://github.com/pleme-io/tatara?branch=main#4defb1e79b99d8729cb8f00d53bc42ef43da17b0"
-dependencies = [
- "blake3",
- "hex",
- "libc",
- "owo-colors",
- "serde",
- "serde_json",
- "tatara-lisp 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
- "tatara-lisp-derive 0.2.0 (git+https://github.com/pleme-io/tatara?branch=main)",
- "thiserror",
-]
-
-[[package]]
-name = "tatara-ui"
-version = "0.2.0"
 source = "git+https://github.com/pleme-io/tatara#18c84c75e3b0d44f40e8790f3b51b6c11456d011"
 dependencies = [
  "blake3",
@@ -2591,8 +2538,8 @@ dependencies = [
  "owo-colors",
  "serde",
  "serde_json",
- "tatara-lisp 0.2.0 (git+https://github.com/pleme-io/tatara)",
- "tatara-lisp-derive 0.2.0 (git+https://github.com/pleme-io/tatara)",
+ "tatara-lisp",
+ "tatara-lisp-derive",
  "thiserror",
 ]
 
