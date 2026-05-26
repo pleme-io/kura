@@ -1467,7 +1467,7 @@ rec {
         src = pkgs.fetchgit {
           url = "https://github.com/pleme-io/egaku";
           rev = "b67e5bb1ab7b817bcc2ecd4ef7a8ea0e06fa814f";
-          sha256 = "sha256-ClM197qPKfcm13jcIkff5Atozz6n8vOgRTnhPF5FuWk=";
+          sha256 = "0sdr8mg3rq9r8nhg7wm77v7nh2z4vx3j5p3qswkgfacgpbvkalqa";
         };
         dependencies = [
           {
@@ -3865,7 +3865,7 @@ rec {
       };
       "kura" = rec {
         crateName = "kura";
-        version = "0.1.0";
+        version = "0.1.1";
         edition = "2024";
         crateBin = [
           {
@@ -3956,7 +3956,7 @@ rec {
       };
       "kura-agent" = rec {
         crateName = "kura-agent";
-        version = "0.1.0";
+        version = "0.1.1";
         edition = "2024";
         src = lib.cleanSourceWith { filter = sourceFilter;  src = ./kura-agent; };
         libName = "kura_agent";
@@ -4039,7 +4039,7 @@ rec {
       };
       "kura-check" = rec {
         crateName = "kura-check";
-        version = "0.1.0";
+        version = "0.1.1";
         edition = "2024";
         crateBin = [
           {
@@ -4083,7 +4083,7 @@ rec {
       };
       "kura-core" = rec {
         crateName = "kura-core";
-        version = "0.1.0";
+        version = "0.1.1";
         edition = "2024";
         src = lib.cleanSourceWith { filter = sourceFilter;  src = ./kura-core; };
         libName = "kura_core";
@@ -4134,7 +4134,7 @@ rec {
       };
       "kura-ghostty" = rec {
         crateName = "kura-ghostty";
-        version = "0.1.0";
+        version = "0.1.1";
         edition = "2024";
         src = lib.cleanSourceWith { filter = sourceFilter;  src = ./kura-ghostty; };
         libName = "kura_ghostty";
@@ -4178,7 +4178,7 @@ rec {
       };
       "kura-lattice" = rec {
         crateName = "kura-lattice";
-        version = "0.1.0";
+        version = "0.1.1";
         edition = "2024";
         src = lib.cleanSourceWith { filter = sourceFilter;  src = ./kura-lattice; };
         libName = "kura_lattice";
@@ -4204,7 +4204,7 @@ rec {
       };
       "kura-provider" = rec {
         crateName = "kura-provider";
-        version = "0.1.0";
+        version = "0.1.1";
         edition = "2024";
         src = lib.cleanSourceWith { filter = sourceFilter;  src = ./kura-provider; };
         libName = "kura_provider";
@@ -4261,7 +4261,7 @@ rec {
       };
       "kura-run" = rec {
         crateName = "kura-run";
-        version = "0.1.0";
+        version = "0.1.1";
         edition = "2024";
         crateBin = [
           {
@@ -4368,7 +4368,7 @@ rec {
       };
       "kura-tool" = rec {
         crateName = "kura-tool";
-        version = "0.1.0";
+        version = "0.1.1";
         edition = "2024";
         src = lib.cleanSourceWith { filter = sourceFilter;  src = ./kura-tool; };
         libName = "kura_tool";
@@ -4440,7 +4440,7 @@ rec {
       };
       "kura-tui" = rec {
         crateName = "kura-tui";
-        version = "0.1.0";
+        version = "0.1.1";
         edition = "2024";
         src = lib.cleanSourceWith { filter = sourceFilter;  src = ./kura-tui; };
         libName = "kura_tui";

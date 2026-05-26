@@ -1202,7 +1202,7 @@ dependencies = [
 
 [[package]]
 name = "kura"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "clap",
@@ -1225,7 +1225,7 @@ dependencies = [
 
 [[package]]
 name = "kura-agent"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "chrono",
@@ -1245,7 +1245,7 @@ dependencies = [
 
 [[package]]
 name = "kura-check"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "clap",
@@ -1257,7 +1257,7 @@ dependencies = [
 
 [[package]]
 name = "kura-core"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "blake3",
  "chrono",
@@ -1272,7 +1272,7 @@ dependencies = [
 
 [[package]]
 name = "kura-ghostty"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "base64",
@@ -1285,7 +1285,7 @@ dependencies = [
 
 [[package]]
 name = "kura-lattice"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "proptest",
  "serde",
@@ -1294,7 +1294,7 @@ dependencies = [
 
 [[package]]
 name = "kura-provider"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -1310,7 +1310,7 @@ dependencies = [
 
 [[package]]
 name = "kura-run"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -1336,7 +1336,7 @@ dependencies = [
 
 [[package]]
 name = "kura-tool"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "hasami",
@@ -1353,7 +1353,7 @@ dependencies = [
 
 [[package]]
 name = "kura-tui"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "anyhow",
  "crossterm",
