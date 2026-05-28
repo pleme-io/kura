@@ -80,8 +80,13 @@ impl Default for RetryConfig {
 }
 
 /// Backoff strategy for retries
-#[derive(Debug, Clone, Serialize, Deserialize, Default, gen_platform::TypedDispatcher)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default,
+         gen_platform::TypedDispatcher,
+         gen_platform::Discriminant,
+         gen_platform::IsVariant,
+         gen_platform::FromStrKind)]
 #[serde(rename_all = "snake_case")]
+#[discriminant(also_display)]
 pub enum BackoffStrategy {
     #[default]
     Fixed,
