@@ -33,7 +33,7 @@ impl NodeId {
 }
 
 /// What kind of node this is
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, gen_platform::TypedDispatcher)]
 #[serde(tag = "type")]
 pub enum NodeKind {
     /// Simple prompt execution
@@ -80,7 +80,7 @@ impl Default for RetryConfig {
 }
 
 /// Backoff strategy for retries
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, gen_platform::TypedDispatcher)]
 #[serde(rename_all = "snake_case")]
 pub enum BackoffStrategy {
     #[default]
@@ -105,7 +105,7 @@ pub struct VerificationConfig {
 fn default_verification_required() -> bool { true }
 
 /// What kind of verification to perform
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, gen_platform::TypedDispatcher)]
 #[serde(tag = "type")]
 pub enum VerificationKind {
     /// Check output matches a pattern
@@ -158,7 +158,7 @@ pub struct Transition {
     pub guard: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, gen_platform::TypedDispatcher)]
 #[serde(tag = "type")]
 pub enum Event {
     Success,
@@ -166,6 +166,15 @@ pub enum Event {
     Timeout,
     Custom { name: String },
 }
+
+// Fleet-wide dispatcher-catalog registrations for kura-run's DAG
+// surface. Eighth consumer class adopting gen-platform's typed-
+// dispatcher catamorphism. See theory/UNIFIED-COMPUTING-MODEL.md
+// §VI for the absorption roadmap.
+gen_platform::register_dispatcher!("kura.node-kind",         NodeKind);
+gen_platform::register_dispatcher!("kura.backoff-strategy",  BackoffStrategy);
+gen_platform::register_dispatcher!("kura.verification-kind", VerificationKind);
+gen_platform::register_dispatcher!("kura.event",             Event);
 
 /// Actions that can be taken on state entry
 #[derive(Debug, Clone, Serialize, Deserialize)]
