@@ -34,8 +34,8 @@ kura-run      = { path = "kura-run" }
 
 # Gen-platform — typed-dispatcher catalog integration
 # (theory/UNIFIED-COMPUTING-MODEL.md §VI).
-gen-platform = { path = "../gen/crates/gen-platform" }
-gen-types = { path = "../gen/crates/gen-types" }
+gen-platform = { git = "https://github.com/pleme-io/gen" }
+gen-types = { git = "https://github.com/pleme-io/gen" }
 tatara-lisp        = { git = "https://github.com/pleme-io/tatara" }
 tatara-lisp-derive = { git = "https://github.com/pleme-io/tatara" }
 tatara-ui          = { git = "https://github.com/pleme-io/tatara" }
