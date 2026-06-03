@@ -458,7 +458,7 @@ checksum = "d0881ea181b1df73ff77ffaaf9c7544ecc11e82fba9b5f27b262a3c73a332555"
 [[package]]
 name = "egaku"
 version = "0.1.0"
-source = "git+https://github.com/pleme-io/egaku#0baef9d6a8bade9e1a4e5b464f095e397e6c3875"
+source = "git+https://github.com/pleme-io/egaku#3b2af556217f4bcadc58b2f6b494f80224a10a9e"
 dependencies = [
  "serde",
  "thiserror",
@@ -481,7 +481,7 @@ dependencies = [
 [[package]]
 name = "egaku-term"
 version = "0.2.1"
-source = "git+https://github.com/pleme-io/egaku-term#3cbe525ff168c3b869349bb414c6fdc5cd9118d1"
+source = "git+https://github.com/pleme-io/egaku-term#64e2c85fd87e7090cffa1551f74ce4207ee21214"
 dependencies = [
  "crossterm",
  "egaku",
@@ -674,8 +674,8 @@ dependencies = [
 
 [[package]]
 name = "gen-macros"
-version = "0.1.0"
-source = "git+https://github.com/pleme-io/gen#0d9df5087f3b9c1a30988b9dfe08e280f72df83f"
+version = "0.1.6"
+source = "git+https://github.com/pleme-io/gen#eea15518fdff36d8b21ed753b6b161fc0d3623f6"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -684,8 +684,8 @@ dependencies = [
 
 [[package]]
 name = "gen-platform"
-version = "0.1.0"
-source = "git+https://github.com/pleme-io/gen#0d9df5087f3b9c1a30988b9dfe08e280f72df83f"
+version = "0.1.6"
+source = "git+https://github.com/pleme-io/gen#eea15518fdff36d8b21ed753b6b161fc0d3623f6"
 dependencies = [
  "gen-macros",
  "gen-types",
@@ -697,8 +697,8 @@ dependencies = [
 
 [[package]]
 name = "gen-types"
-version = "0.1.0"
-source = "git+https://github.com/pleme-io/gen#0d9df5087f3b9c1a30988b9dfe08e280f72df83f"
+version = "0.1.6"
+source = "git+https://github.com/pleme-io/gen#eea15518fdff36d8b21ed753b6b161fc0d3623f6"
 dependencies = [
  "blake3",
  "chrono",
@@ -782,7 +782,7 @@ dependencies = [
 [[package]]
 name = "hasami"
 version = "0.1.0"
-source = "git+https://github.com/pleme-io/hasami#6f0ddb55e7d592f5635d8e0b8c407b5563f7ee3d"
+source = "git+https://github.com/pleme-io/hasami#5462628c9da898f4034475efc242f9ed88cca671"
 dependencies = [
  "arboard",
  "thiserror",
@@ -1148,8 +1148,8 @@ checksum = "a6cb138bb79a146c1bd460005623e142ef0181e3d0219cb493e02f7d08a35695"
 
 [[package]]
 name = "ishou-tokens"
-version = "0.1.0"
-source = "git+https://github.com/pleme-io/ishou#19ac1ee0f501c48749bf826d260a7574b12b7ee3"
+version = "0.1.1"
+source = "git+https://github.com/pleme-io/ishou#fd91656b46863d238206d29ce309ac37da8caef3"
 dependencies = [
  "irodori 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde",
@@ -1177,7 +1177,7 @@ dependencies = [
 [[package]]
 name = "kaname"
 version = "0.1.1"
-source = "git+https://github.com/pleme-io/kaname#3c225132e6edec18be18744fc5b85033a08cdf2a"
+source = "git+https://github.com/pleme-io/kaname#46e66f7cd5a77700956bcc5681e45a909b7fae4b"
 dependencies = [
  "rmcp",
  "schemars",
@@ -1509,7 +1509,7 @@ dependencies = [
 [[package]]
 name = "mojiban"
 version = "0.1.1"
-source = "git+https://github.com/pleme-io/mojiban#cc1d94fdd0a79f1f3481f2aae4db5a2ccc5a1032"
+source = "git+https://github.com/pleme-io/mojiban#afe28772606d5629ac829e52bc4c8c428ebf7393"
 dependencies = [
  "pulldown-cmark",
  "serde",
@@ -1520,8 +1520,8 @@ dependencies = [
 
 [[package]]
 name = "moldura"
-version = "0.1.2"
-source = "git+https://github.com/pleme-io/moldura#fe55eb729918b1cd9807e2b06101f6a0dad26419"
+version = "0.1.3"
+source = "git+https://github.com/pleme-io/moldura#ce925765a30cbf73d58fd391f8b915f6598a8d1f"
 dependencies = [
  "anyhow",
  "arc-swap",
@@ -2153,7 +2153,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys 0.4.15",
- "windows-sys 0.59.0",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -2388,7 +2388,7 @@ dependencies = [
 [[package]]
 name = "shikumi"
 version = "0.1.0"
-source = "git+https://github.com/pleme-io/shikumi#14ba02ab0dc28e88507181dcb6380db3911ec200"
+source = "git+https://github.com/pleme-io/shikumi#4426f572b66d053dde2ca211c3b55121d76598b1"
 dependencies = [
  "arc-swap",
  "async-trait",
@@ -2520,7 +2520,7 @@ dependencies = [
 [[package]]
 name = "tatara-lisp"
 version = "0.2.1"
-source = "git+https://github.com/pleme-io/tatara#ceaab25b5e7c0fcb48668b0ec02a63a707fcf604"
+source = "git+https://github.com/pleme-io/tatara#4084ecec5c7b94f5458e943601370ce7b46aa884"
 dependencies = [
  "blake3",
  "serde",
@@ -2532,7 +2532,7 @@ dependencies = [
 [[package]]
 name = "tatara-lisp-derive"
 version = "0.2.1"
-source = "git+https://github.com/pleme-io/tatara#ceaab25b5e7c0fcb48668b0ec02a63a707fcf604"
+source = "git+https://github.com/pleme-io/tatara#4084ecec5c7b94f5458e943601370ce7b46aa884"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -2542,7 +2542,7 @@ dependencies = [
 [[package]]
 name = "tatara-ui"
 version = "0.2.1"
-source = "git+https://github.com/pleme-io/tatara#ceaab25b5e7c0fcb48668b0ec02a63a707fcf604"
+source = "git+https://github.com/pleme-io/tatara#4084ecec5c7b94f5458e943601370ce7b46aa884"
 dependencies = [
  "blake3",
  "hex",
@@ -3250,15 +3250,6 @@ name = "windows-sys"
 version = "0.52.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "282be5f36a8ce781fad8c8ae18fa3f9beff57ec1b52cb3de0789201425d9a33d"
-dependencies = [
- "windows-targets 0.52.6",
-]
-
-[[package]]
-name = "windows-sys"
-version = "0.59.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1e38bc4d79ed67fd075bcc251a1c39b32a1776bbe92e5bef1f0bf1f8c531853b"
 dependencies = [
  "windows-targets 0.52.6",
 ]
