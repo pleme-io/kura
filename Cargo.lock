@@ -470,17 +470,6 @@ dependencies = [
 [[package]]
 name = "egaku-term"
 version = "0.2.1"
-source = "git+https://github.com/pleme-io/egaku-term?tag=v0.2.1#aa3fd63402577c624df499e5e3798d313e4fe6cd"
-dependencies = [
- "crossterm",
- "egaku",
- "thiserror",
- "unicode-width",
-]
-
-[[package]]
-name = "egaku-term"
-version = "0.2.1"
 source = "git+https://github.com/pleme-io/egaku-term#64e2c85fd87e7090cffa1551f74ce4207ee21214"
 dependencies = [
  "crossterm",
@@ -1215,7 +1204,7 @@ dependencies = [
  "anyhow",
  "clap",
  "crossterm",
- "egaku-term 0.2.1 (git+https://github.com/pleme-io/egaku-term?tag=v0.2.1)",
+ "egaku-term",
  "kura-agent",
  "kura-core",
  "kura-ghostty",
@@ -1368,7 +1357,7 @@ dependencies = [
  "anyhow",
  "crossterm",
  "egaku",
- "egaku-term 0.2.1 (git+https://github.com/pleme-io/egaku-term?tag=v0.2.1)",
+ "egaku-term",
  "irodori 0.1.1 (git+https://github.com/pleme-io/irodori)",
  "kura-agent",
  "kura-core",
@@ -1527,7 +1516,7 @@ dependencies = [
  "arc-swap",
  "crossterm",
  "egaku",
- "egaku-term 0.2.1 (git+https://github.com/pleme-io/egaku-term)",
+ "egaku-term",
  "ishou-tokens",
  "mimalloc",
  "notify",
