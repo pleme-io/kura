@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "cargo_lock_sha256": "6e7ae66bb2159fba09eaba14cb139e8c9a255426d2afe5ecc1731ea3f629665c",
+  "cargo_lock_sha256": "64bd8356bc11a972f2311fc3ca08fa37a9a11738fad32c2c13ed9c8ae94e4a85",
   "target_resolves": {
     "base": {
       "adler2-2.0.1": {
@@ -3326,7 +3326,7 @@
         "build_dependencies": [],
         "features": []
       },
-      "kura-0.1.3": {
+      "kura-0.1.4": {
         "runtime_dependencies": [
           {
             "name": "anyhow",
@@ -3374,7 +3374,7 @@
           },
           {
             "name": "kura_agent",
-            "package_key": "kura-agent-0.1.3",
+            "package_key": "kura-agent-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -3384,7 +3384,7 @@
           },
           {
             "name": "kura_core",
-            "package_key": "kura-core-0.1.3",
+            "package_key": "kura-core-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -3394,7 +3394,7 @@
           },
           {
             "name": "kura_ghostty",
-            "package_key": "kura-ghostty-0.1.3",
+            "package_key": "kura-ghostty-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -3404,7 +3404,7 @@
           },
           {
             "name": "kura_provider",
-            "package_key": "kura-provider-0.1.3",
+            "package_key": "kura-provider-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -3414,7 +3414,7 @@
           },
           {
             "name": "kura_run",
-            "package_key": "kura-run-0.1.3",
+            "package_key": "kura-run-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -3424,7 +3424,7 @@
           },
           {
             "name": "kura_tool",
-            "package_key": "kura-tool-0.1.3",
+            "package_key": "kura-tool-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -3434,7 +3434,7 @@
           },
           {
             "name": "kura_tui",
-            "package_key": "kura-tui-0.1.3",
+            "package_key": "kura-tui-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -3508,7 +3508,7 @@
         "build_dependencies": [],
         "features": []
       },
-      "kura-agent-0.1.3": {
+      "kura-agent-0.1.4": {
         "runtime_dependencies": [
           {
             "name": "anyhow",
@@ -3542,7 +3542,7 @@
           },
           {
             "name": "kura_core",
-            "package_key": "kura-core-0.1.3",
+            "package_key": "kura-core-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -3552,7 +3552,7 @@
           },
           {
             "name": "kura_provider",
-            "package_key": "kura-provider-0.1.3",
+            "package_key": "kura-provider-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -3562,7 +3562,7 @@
           },
           {
             "name": "kura_tool",
-            "package_key": "kura-tool-0.1.3",
+            "package_key": "kura-tool-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -3660,7 +3660,7 @@
         "build_dependencies": [],
         "features": []
       },
-      "kura-check-0.1.3": {
+      "kura-check-0.1.4": {
         "runtime_dependencies": [
           {
             "name": "anyhow",
@@ -3686,7 +3686,7 @@
           },
           {
             "name": "kura_core",
-            "package_key": "kura-core-0.1.3",
+            "package_key": "kura-core-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -3696,7 +3696,7 @@
           },
           {
             "name": "kura_lattice",
-            "package_key": "kura-lattice-0.1.3",
+            "package_key": "kura-lattice-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -3728,7 +3728,7 @@
         "build_dependencies": [],
         "features": []
       },
-      "kura-core-0.1.3": {
+      "kura-core-0.1.4": {
         "runtime_dependencies": [
           {
             "name": "blake3",
@@ -3828,7 +3828,7 @@
         "build_dependencies": [],
         "features": []
       },
-      "kura-ghostty-0.1.3": {
+      "kura-ghostty-0.1.4": {
         "runtime_dependencies": [
           {
             "name": "anyhow",
@@ -3910,7 +3910,7 @@
         "build_dependencies": [],
         "features": []
       },
-      "kura-lattice-0.1.3": {
+      "kura-lattice-0.1.4": {
         "runtime_dependencies": [
           {
             "name": "proptest",
@@ -3948,7 +3948,7 @@
         "build_dependencies": [],
         "features": []
       },
-      "kura-provider-0.1.3": {
+      "kura-provider-0.1.4": {
         "runtime_dependencies": [
           {
             "name": "anyhow",
@@ -3982,7 +3982,7 @@
           },
           {
             "name": "kura_core",
-            "package_key": "kura-core-0.1.3",
+            "package_key": "kura-core-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -4062,7 +4062,7 @@
         "build_dependencies": [],
         "features": []
       },
-      "kura-run-0.1.3": {
+      "kura-run-0.1.4": {
         "runtime_dependencies": [
           {
             "name": "anyhow",
@@ -4138,7 +4138,7 @@
           },
           {
             "name": "kura_core",
-            "package_key": "kura-core-0.1.3",
+            "package_key": "kura-core-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -4266,7 +4266,7 @@
         "build_dependencies": [],
         "features": []
       },
-      "kura-tool-0.1.3": {
+      "kura-tool-0.1.4": {
         "runtime_dependencies": [
           {
             "name": "anyhow",
@@ -4300,7 +4300,7 @@
           },
           {
             "name": "kura_core",
-            "package_key": "kura-core-0.1.3",
+            "package_key": "kura-core-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -4390,7 +4390,7 @@
         "build_dependencies": [],
         "features": []
       },
-      "kura-tui-0.1.3": {
+      "kura-tui-0.1.4": {
         "runtime_dependencies": [
           {
             "name": "anyhow",
@@ -4446,7 +4446,7 @@
           },
           {
             "name": "kura_agent",
-            "package_key": "kura-agent-0.1.3",
+            "package_key": "kura-agent-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -4456,7 +4456,7 @@
           },
           {
             "name": "kura_core",
-            "package_key": "kura-core-0.1.3",
+            "package_key": "kura-core-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -4466,7 +4466,7 @@
           },
           {
             "name": "kura_ghostty",
-            "package_key": "kura-ghostty-0.1.3",
+            "package_key": "kura-ghostty-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -4476,7 +4476,7 @@
           },
           {
             "name": "kura_provider",
-            "package_key": "kura-provider-0.1.3",
+            "package_key": "kura-provider-0.1.4",
             "kind": "normal",
             "features": [],
             "uses_default_features": true,
@@ -14593,8 +14593,8 @@
     "constant_time_eq-0.4.2": {
       "edition": "2024"
     },
-    "core-foundation-sys-0.8.7": {
-      "edition": "2018"
+    "cpufeatures-0.3.0": {
+      "edition": "2024"
     },
     "crc32fast-1.5.0": {
       "edition": "2021",
@@ -14618,9 +14618,6 @@
     },
     "dirs-sys-0.5.0": {
       "edition": "2015"
-    },
-    "dispatch2-0.3.1": {
-      "edition": "2021"
     },
     "displaydoc-0.2.6": {
       "edition": "2021",
@@ -14707,6 +14704,9 @@
     },
     "gen-types-0.1.6-eea15518fdff36d8b21ed753b6b161fc0d3623f6": {
       "edition": "2024"
+    },
+    "gethostname-1.1.0": {
+      "edition": "2021"
     },
     "getopts-0.2.24": {
       "edition": "2021"
@@ -14803,6 +14803,12 @@
     "inlinable_string-0.1.15": {
       "edition": "2018"
     },
+    "inotify-0.11.1": {
+      "edition": "2018"
+    },
+    "inotify-sys-0.1.5": {
+      "edition": "2015"
+    },
     "inventory-0.3.24": {
       "edition": "2021"
     },
@@ -14827,13 +14833,7 @@
     "kaname-0.1.1-46e66f7cd5a77700956bcc5681e45a909b7fae4b": {
       "edition": "2024"
     },
-    "kqueue-1.1.1": {
-      "edition": "2021"
-    },
-    "kqueue-sys-1.1.2": {
-      "edition": "2021"
-    },
-    "kura-0.1.3": {
+    "kura-0.1.4": {
       "edition": "2024",
       "binaries": [
         {
@@ -14842,14 +14842,14 @@
         }
       ]
     },
-    "kura-agent-0.1.3": {
+    "kura-agent-0.1.4": {
       "edition": "2024",
       "lib_target": {
         "name": "kura_agent",
         "path": "src/lib.rs"
       }
     },
-    "kura-check-0.1.3": {
+    "kura-check-0.1.4": {
       "edition": "2024",
       "binaries": [
         {
@@ -14858,35 +14858,35 @@
         }
       ]
     },
-    "kura-core-0.1.3": {
+    "kura-core-0.1.4": {
       "edition": "2024",
       "lib_target": {
         "name": "kura_core",
         "path": "src/lib.rs"
       }
     },
-    "kura-ghostty-0.1.3": {
+    "kura-ghostty-0.1.4": {
       "edition": "2024",
       "lib_target": {
         "name": "kura_ghostty",
         "path": "src/lib.rs"
       }
     },
-    "kura-lattice-0.1.3": {
+    "kura-lattice-0.1.4": {
       "edition": "2024",
       "lib_target": {
         "name": "kura_lattice",
         "path": "src/lib.rs"
       }
     },
-    "kura-provider-0.1.3": {
+    "kura-provider-0.1.4": {
       "edition": "2024",
       "lib_target": {
         "name": "kura_provider",
         "path": "src/lib.rs"
       }
     },
-    "kura-run-0.1.3": {
+    "kura-run-0.1.4": {
       "edition": "2024",
       "lib_target": {
         "name": "kura_run",
@@ -14899,14 +14899,14 @@
         }
       ]
     },
-    "kura-tool-0.1.3": {
+    "kura-tool-0.1.4": {
       "edition": "2024",
       "lib_target": {
         "name": "kura_tool",
         "path": "src/lib.rs"
       }
     },
-    "kura-tui-0.1.3": {
+    "kura-tui-0.1.4": {
       "edition": "2024",
       "lib_target": {
         "name": "kura_tui",
@@ -14924,6 +14924,12 @@
       "edition": "2018",
       "build_script": "build.rs",
       "links": "mimalloc"
+    },
+    "linux-raw-sys-0.4.15": {
+      "edition": "2021"
+    },
+    "linux-raw-sys-0.12.1": {
+      "edition": "2021"
     },
     "litemap-0.8.2": {
       "edition": "2021"
@@ -14973,28 +14979,6 @@
     "num-traits-0.2.19": {
       "edition": "2021",
       "build_script": "build.rs"
-    },
-    "objc2-0.6.4": {
-      "edition": "2021",
-      "build_script": "build.rs"
-    },
-    "objc2-app-kit-0.3.2": {
-      "edition": "2021"
-    },
-    "objc2-core-foundation-0.3.2": {
-      "edition": "2021"
-    },
-    "objc2-core-graphics-0.3.2": {
-      "edition": "2021"
-    },
-    "objc2-encode-4.1.0": {
-      "edition": "2021"
-    },
-    "objc2-foundation-0.3.2": {
-      "edition": "2021"
-    },
-    "objc2-io-surface-0.3.2": {
-      "edition": "2021"
     },
     "once_cell-1.21.4": {
       "edition": "2021"
@@ -15451,6 +15435,12 @@
     "writeable-0.6.3": {
       "edition": "2021"
     },
+    "x11rb-0.13.2": {
+      "edition": "2021"
+    },
+    "x11rb-protocol-0.13.2": {
+      "edition": "2021"
+    },
     "yansi-1.0.1": {
       "edition": "2021"
     },
@@ -15499,28 +15489,38 @@
     "zune-jpeg-0.5.15": {
       "edition": "2021"
     },
-    "cpufeatures-0.3.0": {
-      "edition": "2024"
-    },
-    "gethostname-1.1.0": {
-      "edition": "2021"
-    },
-    "inotify-0.11.1": {
+    "core-foundation-sys-0.8.7": {
       "edition": "2018"
     },
-    "inotify-sys-0.1.5": {
-      "edition": "2015"
-    },
-    "linux-raw-sys-0.4.15": {
+    "dispatch2-0.3.1": {
       "edition": "2021"
     },
-    "linux-raw-sys-0.12.1": {
+    "kqueue-1.1.1": {
       "edition": "2021"
     },
-    "x11rb-0.13.2": {
+    "kqueue-sys-1.1.2": {
       "edition": "2021"
     },
-    "x11rb-protocol-0.13.2": {
+    "objc2-0.6.4": {
+      "edition": "2021",
+      "build_script": "build.rs"
+    },
+    "objc2-app-kit-0.3.2": {
+      "edition": "2021"
+    },
+    "objc2-core-foundation-0.3.2": {
+      "edition": "2021"
+    },
+    "objc2-core-graphics-0.3.2": {
+      "edition": "2021"
+    },
+    "objc2-encode-4.1.0": {
+      "edition": "2021"
+    },
+    "objc2-foundation-0.3.2": {
+      "edition": "2021"
+    },
+    "objc2-io-surface-0.3.2": {
       "edition": "2021"
     }
   },
